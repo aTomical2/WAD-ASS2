@@ -20,6 +20,7 @@ async function getColorData() {
     }
 }
 //My name is tom
+//Michael1
 
 let data = getColorData();
 console.log(data);
