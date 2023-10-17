@@ -16,10 +16,8 @@ async function getSenatorData() {
 
         displayJSON(data);
     } catch (error) {
-        document.getElementById("id01").innerText = error;
+        console.log(error)
     }
 }
 
 
-let data = getSenatorData();
-console.log(data);
