@@ -1,6 +1,6 @@
 
-
-async function getColorData() {
+// function to assemble data from the JSON file
+async function getSenatorData() {
     try {
         const url = "senators.json";
         const promise = await fetch(url);
@@ -19,11 +19,7 @@ async function getColorData() {
         document.getElementById("id01").innerText = error;
     }
 }
-//My name is tom
-// Michael1
-//added even more text
-// more text
-// another change
 
-let data = getColorData();
+
+let data = getSenatorData();
 console.log(data);
