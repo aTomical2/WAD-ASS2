@@ -19,6 +19,7 @@ async function getColorData() {
         document.getElementById("id01").innerText = error;
     }
 }
+//My name is tom
 
 let data = getColorData();
 console.log(data);
