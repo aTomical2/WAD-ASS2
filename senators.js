@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     senatorClassArray.push(senName)
 }
 console.log(senatorClassArray)
-
 });
 
 
