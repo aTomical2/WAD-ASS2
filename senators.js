@@ -14,6 +14,7 @@ async function getColorData() {
 
         const data = await promise.json();
         displayJSON(data);
+        partyCount(data);
 
     } catch (error) {
         document.getElementById("id01").innerText = error;
@@ -72,7 +73,44 @@ function displayJSON(obj) {
     document.getElementById("id01").innerHTML = senTable;
   }
 
+// Define a function to count Party Membership
+function partyCount(data) {
+  countDem = 0;
+  for (var membership of data.objects) {
+    if (membership.party === "Democrat"){
+    countDem++;
+    }
+  }
+  
+  countRep = 0;
+  for (var membership of data.objects) {
+    if (membership.party === "Republican"){
+      countRep++;
+    }
+  }
+  
+  countInd = 0;
+  for (var membership of data.objects) {
+    if (membership.party === "Independent"){
+      countInd++;
+    }
+  }
+  
+  // Log to console (there in background)
+console.log("Total Democratic Senators: " + countDem);
+console.log("Total Republican Senators: " + countRep);
+console.log("Total Independent Senators: " + countInd);
 
+//return [countDem, countRep, countInd]; if we need it in another part of code/ function, use return statement to make counts available elsewhere.
+
+let partyCountsDiv = document.getElementById("partyCounts");
+partyCountsDiv.innerHTML = `
+  <p>Current Total of Democratic Senators: ${countDem}</p>
+  <p>Current Total of Republican Senators: ${countRep}</p>
+  <p>Current Total of Independent Senators: ${countInd}</p>
+  `;
+
+}
 
 
 
