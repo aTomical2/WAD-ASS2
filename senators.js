@@ -74,6 +74,7 @@ function displayJSON(obj) {
   }
 
 // Define a function to count Party Membership
+// "data" = JSON file name? "objects" = Array? Then further Objects inside array
 function partyCount(data) {
   countDem = 0;
   for (var membership of data.objects) {
@@ -103,6 +104,7 @@ console.log("Total Independent Senators: " + countInd);
 
 //return [countDem, countRep, countInd]; if we need it in another part of code/ function, use return statement to make counts available elsewhere.
 
+// HTML
 let partyCountsDiv = document.getElementById("partyCounts");
 partyCountsDiv.innerHTML = `
   <p>Current Total of Democratic Senators: ${countDem}</p>
