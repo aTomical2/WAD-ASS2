@@ -51,8 +51,6 @@ function partySize(senArray) {
   return partyDict;
 }
 
-
-
 // function to display the table of senators
 function displayTable(table) {
   let elemDiv = document.createElement("div");
@@ -63,11 +61,10 @@ function displayTable(table) {
   document.getElementById("senTable").innerHTML = table;
 }
 
-
 // function to create a table holding all the senator details
 function senTable(senArray) {
   // adds the required information to the table
-  function addToTable(i, senArray){
+  function addToTable(i, senArray) {
     let firstname = senArray[i].person.firstname;
     let surname = senArray[i].person.lastname;
     let party = senArray[i].party;
@@ -95,7 +92,6 @@ function senTable(senArray) {
       "</td><td>" +
       sentitle +
       "</td></tr>";
-
   }
 
   // This code iterates through the colorArray and writes html code to put the color information in a table.
@@ -104,28 +100,40 @@ function senTable(senArray) {
   senTable +=
     "<tr><th>Name</th><th>Party</th><th>State</th><th>Gender</th><th>Rank</th><th>Senator Title</th>";
 
-// uses first for loop to check for dem + title
-// second for repub + title
-// third for dem no title
-// fourth for repub no title
+  // uses first for loop to check for dem + title
+  // second for repub + title
+  // third for dem no title
+  // fourth for repub no title
   for (let i = 0; i < senArray.length; i++) {
-    if (senArray[i].leadership_title != null && senArray[i].party == "Democrat"){
-      addToTable(i, senArray)
+    if (
+      senArray[i].leadership_title != null &&
+      senArray[i].party == "Democrat"
+    ) {
+      addToTable(i, senArray);
     }
   }
   for (let i = 0; i < senArray.length; i++) {
-    if (senArray[i].leadership_title != null && senArray[i].party == "Republican"){
-      addToTable(i, senArray)
+    if (
+      senArray[i].leadership_title != null &&
+      senArray[i].party == "Republican"
+    ) {
+      addToTable(i, senArray);
     }
   }
   for (let i = 0; i < senArray.length; i++) {
-    if (senArray[i].leadership_title == null && senArray[i].party == "Democrat"){
-      addToTable(i, senArray)
+    if (
+      senArray[i].leadership_title == null &&
+      senArray[i].party == "Democrat"
+    ) {
+      addToTable(i, senArray);
     }
   }
   for (let i = 0; i < senArray.length; i++) {
-    if (senArray[i].leadership_title == null && senArray[i].party == "Republican"){
-      addToTable(i, senArray)
+    if (
+      senArray[i].leadership_title == null &&
+      senArray[i].party == "Republican"
+    ) {
+      addToTable(i, senArray);
     }
   }
 
@@ -133,7 +141,6 @@ function senTable(senArray) {
   senTable += "</table>";
   return senTable;
 }
-
 
 // addTableFilters() {
 
