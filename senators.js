@@ -69,7 +69,9 @@ function createFilterLists(senArray) {
       rank.push(senArray[i].senator_rank);
     }
     if (!title.includes(senArray[i].leadership_title)) {
+      
       title.push(senArray[i].leadership_title);
+      
     }
   }
   return [
@@ -265,7 +267,6 @@ function addTableFilters(filterlist) {
       let drop = document.createElement("li");
       let dropItem = document.createElement("input");
       let dropItemLabel = document.createElement("label");
-
       if (filterlist[i][j] != undefined) {
         dropItem.setAttribute("id", filterlist[i][j]);
         dropItem.setAttribute("type", "checkbox");
@@ -277,14 +278,14 @@ function addTableFilters(filterlist) {
         dropItemLabel.setAttribute("for", filterlist[i][j]);
         dropItemLabel.innerHTML = filterlist[i][j];
       } else {
-        dropItem.setAttribute("id", filterlist[i][j]);
+        dropItem.setAttribute("id", "-");
         dropItem.setAttribute("type", "checkbox");
-        dropItem.setAttribute("name", filterlist[i][j]);
-        dropItem.setAttribute("value", filterlist[i][j]);
+        dropItem.setAttribute("name", "-");
+        dropItem.setAttribute("value", "-");
         dropItem.setAttribute("checked", "checked");
         dropItem.setAttribute("onchange", "changeTable(this)");
 
-        dropItemLabel.setAttribute("for", filterlist[i][j]);
+        dropItemLabel.setAttribute("for", "-");
         dropItemLabel.innerHTML = "-";
       }
       dropDownDiv.appendChild(drop);
@@ -308,14 +309,84 @@ function changeTable(location) {
 
   // taken from W3 Schools Table Filter
   // Declare variables
-  var input, filter, table, tr, td, txtValue;
-  input = document.getElementById(location.id);
-  filter = input.value;
-  table = document.getElementById("senTable");
-  tr = table.getElementsByTagName("tr");
+  let input, filter, table, tr, td, txtValue;     
+  input = document.getElementById(location.id); // input = button clicked
+  table = document.getElementById("senTable"); // table = table
+  tr = table.getElementsByTagName("tr"); // the rows in a list
 
   // checks the checkbox ticked - if its false adds it to the list in senDisplayList
   let clickStatus = input.checked;
+
+
+
+
+  // check if its a showall - if it is and true - tick all
+  // if it is and false - untick all 
+  // return after either to stop function
+  // console.log(tableRowToSearch, "TRTS")
+  // console.log(i)
+  // console.log(clickStatus)
+  // console.log(input.id) 
+  // console.log("showAll" + tableRowToSearch)
+  if (input.id == "showAll" + tableRowToSearch) {
+    if (clickStatus == false){
+
+      // untick all boxes
+      let untickList = document.getElementById(tableRowToSearch).childNodes
+      for (let p = 2; p < untickList.length; p++){
+        untickList[p].childNodes[0].checked = false
+        senDisplayList[i].push(untickList[p].childNodes[0].id)
+
+      }
+      
+
+
+      // hides all rows
+      for (let j = 1; j < tr.length; j++){
+        tr[j].style.display = "none"
+        }
+      
+      
+    } else{
+      // when clickStatus true
+      // untick all boxes
+      let tickList = document.getElementById(tableRowToSearch).childNodes
+      for (let p = 2; p < tickList.length; p++){
+        tickList[p].childNodes[0].checked = true
+        senDisplayList[i] = []
+
+      }
+      
+
+
+      // hides all rows
+      for (let j = 1; j < tr.length; j++){
+        tr[j].style.display = "table-row"
+        }
+      
+        // keeps interaction with other lists
+        for (let w = 0; w < senDisplayList.length; w++) {
+          for (let n = 0; n < senDisplayList[w].length; n++) {
+            for (let j = 0; j < tr.length; j++) {
+              td = tr[j].getElementsByTagName("td")[w];
+              if (td) {
+                txtValue = td.textContent || td.innerText;
+                let iteminlist = senDisplayList[w][n];
+      
+                if (txtValue == iteminlist) {
+                  tr[j].style.display = "none";
+                }
+              }
+            }
+          }
+        }
+      
+    }
+    return
+  }
+
+
+
   if (clickStatus == false) {
     senDisplayList[i].push(input.id);
 
@@ -364,16 +435,11 @@ function changeTable(location) {
       }
     }
   }
+
+console.log(senDisplayList[5])
+
+
 }
-
-
-function changeData(location){
-  console.log(location.parentNode)
-}
-
-
-
-
 
 
 
