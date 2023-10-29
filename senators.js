@@ -17,28 +17,23 @@ async function getData() {
     document.getElementById("senTable").innerText = error;
   }
 }
-senDisplayList = 
-[
-nameListDisplay = [],
-partyListDisplay = [],
-stateListDisplay = [],
-genderListDisplay = [],
-rankListDisplay = [],
-titleListDisplay = []
+senDisplayList = [
+  (nameListDisplay = []),
+  (partyListDisplay = []),
+  (stateListDisplay = []),
+  (genderListDisplay = []),
+  (rankListDisplay = []),
+  (titleListDisplay = []),
 ];
 
 function displayJSON(obj) {
   let senArray = obj.objects;
-
 
   addTableFilters(createFilterLists(senArray));
 
   displayParties(partySize(senArray));
 
   displayTable(senTable(senArray));
-
-
-
 }
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
@@ -189,114 +184,104 @@ function senTable(senArray) {
       addToTable(i, senArray);
     }
   }
-  
+
   for (let i = 0; i < senArray.length; i++) {
     if (
       senArray[i].leadership_title == null &&
       senArray[i].party == "Republican"
     ) {
       addToTable(i, senArray);
-    }}
-    for (let i = 0; i < senArray.length; i++) {
-      if (
-        senArray[i].leadership_title == null &&
-        senArray[i].party == "Independent"
-      ) {
-        addToTable(i, senArray);
-      }
+    }
+  }
+  for (let i = 0; i < senArray.length; i++) {
+    if (
+      senArray[i].leadership_title == null &&
+      senArray[i].party == "Independent"
+    ) {
+      addToTable(i, senArray);
+    }
   }
 
   // Close the table element.
   senTable += "</table>";
   return senTable;
 }
+
 // creates checkboxes for all the possible options
 // adds the checkboxes to hidden dropdowns
 function addTableFilters(filterlist) {
-  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"]
-  for (let i=0; i<filterlist.length;i++){
-    let dropDownDiv = document.createElement("div")
-    dropDownDiv.setAttribute("id", divTitle[i])
-    dropDownDiv.setAttribute("class", "dropdown")
-    document.body.appendChild(dropDownDiv)
+  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  for (let i = 0; i < filterlist.length; i++) {
+    let dropDownDiv = document.createElement("div");
+    dropDownDiv.setAttribute("id", divTitle[i]);
+    dropDownDiv.setAttribute("class", "dropdown");
+    document.body.appendChild(dropDownDiv);
 
-    let newDropdown = document.createElement("ul")
-    dropDownDiv.appendChild(newDropdown)
-    let showAll = document.createElement("li")
-    showAllInput = document.createElement("input")
-    showAllLabel = document.createElement("label")
+    let newDropdown = document.createElement("ul");
+    dropDownDiv.appendChild(newDropdown);
+    let showAll = document.createElement("li");
+    showAllInput = document.createElement("input");
+    showAllLabel = document.createElement("label");
 
-    showAllInput.setAttribute("id", ("showAll"+divTitle[i]))
-    showAllInput.setAttribute("type", "checkbox")
-    showAllInput.setAttribute("name", "showAll")
-    showAllInput.setAttribute("value", "showAll")
-    showAllInput.setAttribute("checked", "checked")
-    showAllInput.setAttribute("onchange", "changeTable(this)")
+    showAllInput.setAttribute("id", "showAll" + divTitle[i]);
+    showAllInput.setAttribute("type", "checkbox");
+    showAllInput.setAttribute("name", "showAll");
+    showAllInput.setAttribute("value", "showAll");
+    showAllInput.setAttribute("checked", "checked");
+    showAllInput.setAttribute("onchange", "changeTable(this)");
 
+    showAllLabel.setAttribute("for", "showAll" + divTitle[i]);
+    showAllLabel.innerHTML = "Show All";
 
-    showAllLabel.setAttribute("for", "showAll"+divTitle[i])
-    showAllLabel.innerHTML = "Show All"
+    dropDownDiv.appendChild(showAll);
+    showAll.appendChild(showAllInput);
+    showAll.appendChild(showAllLabel);
 
-    dropDownDiv.appendChild(showAll)
-    showAll.appendChild(showAllInput)
-    showAll.appendChild(showAllLabel)
+    for (let j = 0; j < filterlist[i].length; j++) {
+      let drop = document.createElement("li");
+      let dropItem = document.createElement("input");
+      let dropItemLabel = document.createElement("label");
 
+      if (filterlist[i][j] != undefined) {
+        dropItem.setAttribute("id", filterlist[i][j]);
+        dropItem.setAttribute("type", "checkbox");
+        dropItem.setAttribute("name", filterlist[i][j]);
+        dropItem.setAttribute("value", filterlist[i][j]);
+        dropItem.setAttribute("checked", "checked");
+        dropItem.setAttribute("onchange", "changeTable(this)");
 
-    for (let j=0; j < filterlist[i].length; j++){
-      let drop = document.createElement("li")
-      let dropItem = document.createElement("input")
-      let dropItemLabel = document.createElement("label")
-      
-
-      if (filterlist[i][j] != undefined){
-
-        dropItem.setAttribute("id",filterlist[i][j])
-        dropItem.setAttribute("type", "checkbox")
-        dropItem.setAttribute("name", filterlist[i][j])
-        dropItem.setAttribute("value", filterlist[i][j])
-        dropItem.setAttribute("checked", "checked")
-        dropItem.setAttribute("onchange", "changeTable(this)")
-
-
-        dropItemLabel.setAttribute("for", filterlist[i][j])
-        dropItemLabel.innerHTML = filterlist[i][j]
-
+        dropItemLabel.setAttribute("for", filterlist[i][j]);
+        dropItemLabel.innerHTML = filterlist[i][j];
       } else {
-        dropItem.setAttribute("id",filterlist[i][j])
-        dropItem.setAttribute("type", "checkbox")
-        dropItem.setAttribute("name", filterlist[i][j])
-        dropItem.setAttribute("value", filterlist[i][j])
-        dropItem.setAttribute("checked", "checked")
-        dropItem.setAttribute("onchange", "changeTable(this)")
+        dropItem.setAttribute("id", filterlist[i][j]);
+        dropItem.setAttribute("type", "checkbox");
+        dropItem.setAttribute("name", filterlist[i][j]);
+        dropItem.setAttribute("value", filterlist[i][j]);
+        dropItem.setAttribute("checked", "checked");
+        dropItem.setAttribute("onchange", "changeTable(this)");
 
-        dropItemLabel.setAttribute("for", filterlist[i][j])
-        dropItemLabel.innerHTML = "-"
-
+        dropItemLabel.setAttribute("for", filterlist[i][j]);
+        dropItemLabel.innerHTML = "-";
       }
-      dropDownDiv.appendChild(drop)
-      drop.appendChild(dropItem)
-      drop.appendChild(dropItemLabel)
-
+      dropDownDiv.appendChild(drop);
+      drop.appendChild(dropItem);
+      drop.appendChild(dropItemLabel);
     }
   }
-
-
 }
 
-
-// function 
+// function to change the table based on which checkbox filters are clicked
 function changeTable(location) {
-
   // parent is the div that the tickbox was ticked in
   // tableRowToSearch is the ID of the div
   // i is then the index used for while row to apply the changes to
   var parentDiv = location.parentNode.parentNode;
   var tableRowToSearch = parentDiv.id;
 
-  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"]
+  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
 
-  let i = divTitle.indexOf(tableRowToSearch)
-  
+  let i = divTitle.indexOf(tableRowToSearch);
+
   // taken from W3 Schools Table Filter
   // Declare variables
   var input, filter, table, tr, td, txtValue;
@@ -305,54 +290,58 @@ function changeTable(location) {
   table = document.getElementById("senTable");
   tr = table.getElementsByTagName("tr");
 
+  // checks the checkbox ticked - if its false adds it to the list in senDisplayList
+  let clickStatus = input.checked;
+  if (clickStatus == false) {
+    senDisplayList[i].push(input.id);
 
-    // checks the checkbox ticked - if its false adds it to the list in senDisplayList
-     let clickStatus = input.checked
-    if (clickStatus == false){
-      senDisplayList[i].push(input.id)
+    // Previous code used to hide items as they were selected
+    // taken out but maintained incase a bug is found
 
-      // Previous code used to hide items as they were selected
-      // taken out but maintained incase a bug is found
-      
-      // for (let j = 0; j < tr.length; j++){
-      //   td = tr[j].getElementsByTagName("td")[i]
-      //   if (td){
-      //     txtValue = td.textContent || td.innerText;
-      //     if (txtValue == input.id){
-      //       tr[j].style.display = "none"
-      //     }
-      //   }
+    // for (let j = 0; j < tr.length; j++){
+    //   td = tr[j].getElementsByTagName("td")[i]
+    //   if (td){
+    //     txtValue = td.textContent || td.innerText;
+    //     if (txtValue == input.id){
+    //       tr[j].style.display = "none"
+    //     }
+    //   }
 
-      // }
+    // }
 
-      // if it's true it removes it from the list and displays it
-    } else {
-      tempIndex = senDisplayList[i].indexOf(input.id)
-      senDisplayList[i].splice(tempIndex,1)
-      for (let j = 0; j < tr.length; j++){
-        td = tr[j].getElementsByTagName("td")[i]
-        if (td){
-          txtValue = td.textContent || td.innerText;
-          if (txtValue == input.id){
-            tr[j].style.display = "table-row"
-          }}}}
-
-    // does a final loop through all the rows setting anything in the lists to display none
-    for (let w = 0; w < senDisplayList.length; w++) {
-      for (let n = 0; n < senDisplayList[w].length; n++) {
-        for (let j = 0; j < tr.length; j++){
-          td = tr[j].getElementsByTagName("td")[w]
-          if (td){
-            txtValue = td.textContent || td.innerText;
-            let iteminlist = senDisplayList[w][n]
-
-            if (txtValue == iteminlist){
-              tr[j].style.display = "none"
-          }}}}
-    
+    // if it's true it removes it from the list and displays it
+  } else {
+    tempIndex = senDisplayList[i].indexOf(input.id);
+    senDisplayList[i].splice(tempIndex, 1);
+    for (let j = 0; j < tr.length; j++) {
+      td = tr[j].getElementsByTagName("td")[i];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue == input.id) {
+          tr[j].style.display = "table-row";
         }
-    
+      }
+    }
+  }
 
-        
-    }    
-    
+  // does a final loop through all the rows setting anything in the lists to display none
+  for (let w = 0; w < senDisplayList.length; w++) {
+    for (let n = 0; n < senDisplayList[w].length; n++) {
+      for (let j = 0; j < tr.length; j++) {
+        td = tr[j].getElementsByTagName("td")[w];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          let iteminlist = senDisplayList[w][n];
+
+          if (txtValue == iteminlist) {
+            tr[j].style.display = "none";
+          }
+        }
+      }
+    }
+  }
+}
+
+function ChangeData() {
+  console.log(senArray);
+}
