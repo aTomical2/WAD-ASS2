@@ -14,7 +14,8 @@ async function getData() {
     displayJSON(data);
     return data;
   } catch (error) {
-    document.getElementById("senTable").innerText = error;
+    console.log(error)
+    // document.getElementById("senTable").innerText = error;
   }
 }
 senDisplayList = [
@@ -114,7 +115,7 @@ function displayTable(table) {
   document.body.appendChild(elemDiv);
 
   // adds the Table to the element with the ID tag senTable
-  document.getElementById("senTable").innerHTML = table;
+  document.getElementById("senTable").appendChild(table);
 }
 
 // function to create a table holding all the senator details
@@ -132,29 +133,52 @@ function senTable(senArray) {
       sentitle = "-";
     }
 
-    senTable +=
-      "<tr><td>" +
-      firstname +
-      " " +
-      surname +
-      "</td><td>" +
-      party +
-      "</td><td>" +
-      state +
-      "</td><td>" +
-      gender +
-      "</td><td>" +
-      rank +
-      "</td><td>" +
-      sentitle +
-      "</td></tr>";
+    let row, tdName, tdParty, tdState, tdGender, tdSenTitle
+    row = document.createElement("tr")
+
+    tdName = document.createElement("td")
+    tdName.innerText = senArray[i].person.firstname + " " + senArray[i].person.lastname
+
+    tdParty = document.createElement("td")
+    tdParty.innerText = senArray[i].party
+
+    tdState = document.createElement("td")
+    tdState.innerText = senArray[i].state
+
+    tdGender = document.createElement("td")
+    tdGender.innerText = senArray[i].person.gender
+
+    tdSenRank = document.createElement("td")
+    tdSenRank.innerText = senArray[i].senator_rank
+
+    tdSenTitle = document.createElement("td")
+    tdSenTitle.innerText = sentitle
+
+    row.appendChild(tdName)
+    row.appendChild(tdParty)
+    row.appendChild(tdState)
+    row.appendChild(tdGender)
+    row.appendChild(tdSenRank)
+    row.appendChild(tdSenTitle)
+  
+
+    return row
+
   }
 
   // This code iterates through the colorArray and writes html code to put the color information in a table.
-  let senTable = "<table>";
+  let senTable = document.createElement("table");
+  let rowhead = document.createElement("tr");
 
-  senTable +=
-    "<tr><th>Name</th><th>Party</th><th>State</th><th>Gender</th><th>Rank</th><th>Senator Title</th></tr>";
+  headerlist = ["Name", "Party", "State", "Gender", "Rank", "Senator Title"]
+  for (let i =0; i < headerlist.length; i++){
+    th = document.createElement("th")
+    th.innerText = headerlist[i]
+    rowhead.appendChild(th)
+  }
+
+  senTable.appendChild(rowhead)
+
 
   // uses first for loop to check for dem + title
   // second for repub + title
@@ -165,7 +189,8 @@ function senTable(senArray) {
       senArray[i].leadership_title != null &&
       senArray[i].party == "Democrat"
     ) {
-      addToTable(i, senArray);
+      row =addToTable(i, senArray);
+      senTable.appendChild(row)
     }
   }
   for (let i = 0; i < senArray.length; i++) {
@@ -173,16 +198,16 @@ function senTable(senArray) {
       senArray[i].leadership_title == null &&
       senArray[i].party == "Democrat"
     ) {
-      addToTable(i, senArray);
-    }
+      row =addToTable(i, senArray);
+      senTable.appendChild(row)    }
   }
   for (let i = 0; i < senArray.length; i++) {
     if (
       senArray[i].leadership_title != null &&
       senArray[i].party == "Republican"
     ) {
-      addToTable(i, senArray);
-    }
+      row =addToTable(i, senArray);
+      senTable.appendChild(row)    }
   }
 
   for (let i = 0; i < senArray.length; i++) {
@@ -190,20 +215,19 @@ function senTable(senArray) {
       senArray[i].leadership_title == null &&
       senArray[i].party == "Republican"
     ) {
-      addToTable(i, senArray);
-    }
+      row =addToTable(i, senArray);
+      senTable.appendChild(row)    }
   }
   for (let i = 0; i < senArray.length; i++) {
     if (
       senArray[i].leadership_title == null &&
       senArray[i].party == "Independent"
     ) {
-      addToTable(i, senArray);
-    }
+      row =addToTable(i, senArray);
+      senTable.appendChild(row)    }
   }
 
   // Close the table element.
-  senTable += "</table>";
   return senTable;
 }
 
@@ -341,3 +365,16 @@ function changeTable(location) {
     }
   }
 }
+
+
+function changeData(location){
+  console.log(location.parentNode)
+}
+
+
+
+
+
+
+
+
