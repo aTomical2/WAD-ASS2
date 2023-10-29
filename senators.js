@@ -36,6 +36,8 @@ function displayJSON(obj) {
   displayParties(partySize(senArray));
 
   displayTable(senTable(senArray));
+
+  stylePage();
 }
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
@@ -47,7 +49,6 @@ function createFilterLists(senArray) {
   title = [];
 
   for (i = 0; i < senArray.length; i++) {
-
     if (!party.includes(senArray[i].party)) {
       party.push(senArray[i].party);
     }
@@ -64,13 +65,7 @@ function createFilterLists(senArray) {
       title.push(senArray[i].leadership_title);
     }
   }
-  return [
-    party.sort(),
-    state.sort(),
-    gender.sort(),
-    rank.sort(),
-    title.sort(),
-  ];
+  return [party.sort(), state.sort(), gender.sort(), rank.sort(), title.sort()];
 }
 
 // Function to display the dictionary data for parties
@@ -123,44 +118,48 @@ function senTable(senArray) {
 
     tdName = document.createElement("button");
     tdName.innerText =
-    senArray[i].person.firstname + " " + senArray[i].person.lastname;
-
+      senArray[i].person.firstname + " " + senArray[i].person.lastname;
 
     let tdNameExtra, senLink, senLinkText, addListOfItem;
     tdNameExtra = document.createElement("div");
 
+    addListOfItem = [
+      ["Office is: ", senArray[i].extra.office],
+      ["Birthday is: ", senArray[i].person.birthday],
+      ["Start date was:  ", senArray[i].startdate],
+      ["Twitter is:  ", senArray[i].person.twitterid],
+      ["YouTube is:  ", senArray[i].person.youtubeid],
+    ];
 
-    addListOfItem = [["Office is: ", senArray[i].extra.office], ["Birthday is: ", senArray[i].person.birthday],[ "Start date was:  ", senArray[i].startdate], ["Twitter is:  " ,senArray[i].person.twitterid], ["YouTube is:  " ,senArray[i].person.youtubeid]]
-
-    for (let x = 0; x < addListOfItem.length; x++){
-     if (addListOfItem[x][1] != null){
-      let para = document.createElement("p")
-      para.innerText = addListOfItem[x][0] + addListOfItem[x][1]
-      tdNameExtra.appendChild(para)
-     } 
+    for (let x = 0; x < addListOfItem.length; x++) {
+      if (addListOfItem[x][1] != null) {
+        let para = document.createElement("p");
+        para.innerText = addListOfItem[x][0] + addListOfItem[x][1];
+        tdNameExtra.appendChild(para);
+      }
     }
-    
 
     senLink = document.createElement("a");
     senLinkText = document.createTextNode(senArray[i].website);
     senLink.appendChild(senLinkText);
     senLink.href = senArray[i].website;
-    senLink.target = "_blank"
+    senLink.target = "_blank";
     tdNameExtra.appendChild(senLink);
 
     tdNameExtra.style.display = "none";
-    tdNameExtra.setAttribute("id", "div"+senArray[i].person.firstname+senArray[i].person.lastname)
+    tdNameExtra.setAttribute(
+      "id",
+      "div" + senArray[i].person.firstname + senArray[i].person.lastname
+    );
 
-
-    tdName.appendChild(tdNameExtra)
+    tdName.appendChild(tdNameExtra);
     tdName.addEventListener("click", () => {
-      if (tdNameExtra.style.display == "none"){
-        tdNameExtra.style.display = "block"
-      }else { 
-        tdNameExtra.style.display = "none"
+      if (tdNameExtra.style.display == "none") {
+        tdNameExtra.style.display = "block";
+      } else {
+        tdNameExtra.style.display = "none";
       }
-    })
-
+    });
 
     tdParty = document.createElement("td");
     tdParty.innerText = senArray[i].party;
@@ -438,4 +437,3 @@ function changeTable(location) {
     }
   }
 }
-
