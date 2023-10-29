@@ -14,12 +14,13 @@ async function getData() {
     displayJSON(data);
     return data;
   } catch (error) {
-    console.log(error)
-    // document.getElementById("senTable").innerText = error;
+    console.log(error);
+    errorP = document.createElement("p");
+    errorP.innerText = "There was an error getting the data: " + error;
+    document.body.appendChild(errorP);
   }
 }
 senDisplayList = [
-  (nameListDisplay = []),
   (partyListDisplay = []),
   (stateListDisplay = []),
   (genderListDisplay = []),
@@ -39,7 +40,6 @@ function displayJSON(obj) {
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
 function createFilterLists(senArray) {
-  names = [];
   party = [];
   state = [];
   gender = [];
@@ -47,15 +47,7 @@ function createFilterLists(senArray) {
   title = [];
 
   for (i = 0; i < senArray.length; i++) {
-    if (
-      !names.includes(
-        senArray[i].person.firstname + " " + senArray[i].person.lastname
-      )
-    ) {
-      names.push(
-        senArray[i].person.firstname + " " + senArray[i].person.lastname
-      );
-    }
+
     if (!party.includes(senArray[i].party)) {
       party.push(senArray[i].party);
     }
@@ -69,13 +61,10 @@ function createFilterLists(senArray) {
       rank.push(senArray[i].senator_rank);
     }
     if (!title.includes(senArray[i].leadership_title)) {
-      
       title.push(senArray[i].leadership_title);
-      
     }
   }
   return [
-    names.sort(),
     party.sort(),
     state.sort(),
     gender.sort(),
@@ -124,63 +113,92 @@ function displayTable(table) {
 function senTable(senArray) {
   // adds the required information to the table
   function addToTable(i, senArray) {
-    let firstname = senArray[i].person.firstname;
-    let surname = senArray[i].person.lastname;
-    let party = senArray[i].party;
-    let state = senArray[i].state;
-    let gender = senArray[i].person.gender;
-    let rank = senArray[i].senator_rank;
     let sentitle = senArray[i].leadership_title;
     if (sentitle == null) {
       sentitle = "-";
     }
 
-    let row, tdName, tdParty, tdState, tdGender, tdSenTitle
-    row = document.createElement("tr")
+    let row, tdName, tdParty, tdState, tdGender, tdSenTitle;
+    row = document.createElement("tr");
 
-    tdName = document.createElement("td")
-    tdName.innerText = senArray[i].person.firstname + " " + senArray[i].person.lastname
+    tdName = document.createElement("button");
+    tdName.innerText =
+    senArray[i].person.firstname + " " + senArray[i].person.lastname;
 
-    tdParty = document.createElement("td")
-    tdParty.innerText = senArray[i].party
 
-    tdState = document.createElement("td")
-    tdState.innerText = senArray[i].state
+    let tdNameExtra, senLink, senLinkText, addListOfItem;
+    tdNameExtra = document.createElement("div");
 
-    tdGender = document.createElement("td")
-    tdGender.innerText = senArray[i].person.gender
 
-    tdSenRank = document.createElement("td")
-    tdSenRank.innerText = senArray[i].senator_rank
+    addListOfItem = [["Office is: ", senArray[i].extra.office], ["Birthday is: ", senArray[i].person.birthday],[ "Start date was:  ", senArray[i].startdate], ["Twitter is:  " ,senArray[i].person.twitterid], ["YouTube is:  " ,senArray[i].person.youtubeid]]
 
-    tdSenTitle = document.createElement("td")
-    tdSenTitle.innerText = sentitle
+    for (let x = 0; x < addListOfItem.length; x++){
+     if (addListOfItem[x][1] != null){
+      let para = document.createElement("p")
+      para.innerText = addListOfItem[x][0] + addListOfItem[x][1]
+      tdNameExtra.appendChild(para)
+     } 
+    }
+    
 
-    row.appendChild(tdName)
-    row.appendChild(tdParty)
-    row.appendChild(tdState)
-    row.appendChild(tdGender)
-    row.appendChild(tdSenRank)
-    row.appendChild(tdSenTitle)
-  
+    senLink = document.createElement("a");
+    senLinkText = document.createTextNode(senArray[i].website);
+    senLink.appendChild(senLinkText);
+    senLink.href = senArray[i].website;
+    senLink.target = "_blank"
+    tdNameExtra.appendChild(senLink);
 
-    return row
+    tdNameExtra.style.display = "none";
+    tdNameExtra.setAttribute("id", "div"+senArray[i].person.firstname+senArray[i].person.lastname)
 
+
+    tdName.appendChild(tdNameExtra)
+    tdName.addEventListener("click", () => {
+      if (tdNameExtra.style.display == "none"){
+        tdNameExtra.style.display = "block"
+      }else { 
+        tdNameExtra.style.display = "none"
+      }
+    })
+
+
+    tdParty = document.createElement("td");
+    tdParty.innerText = senArray[i].party;
+
+    tdState = document.createElement("td");
+    tdState.innerText = senArray[i].state;
+
+    tdGender = document.createElement("td");
+    tdGender.innerText = senArray[i].person.gender;
+
+    tdSenRank = document.createElement("td");
+    tdSenRank.innerText = senArray[i].senator_rank;
+
+    tdSenTitle = document.createElement("td");
+    tdSenTitle.innerText = sentitle;
+
+    row.appendChild(tdName);
+    row.appendChild(tdParty);
+    row.appendChild(tdState);
+    row.appendChild(tdGender);
+    row.appendChild(tdSenRank);
+    row.appendChild(tdSenTitle);
+
+    return row;
   }
 
   // This code iterates through the colorArray and writes html code to put the color information in a table.
   let senTable = document.createElement("table");
   let rowhead = document.createElement("tr");
 
-  headerlist = ["Name", "Party", "State", "Gender", "Rank", "Senator Title"]
-  for (let i =0; i < headerlist.length; i++){
-    th = document.createElement("th")
-    th.innerText = headerlist[i]
-    rowhead.appendChild(th)
+  headerlist = ["Name", "Party", "State", "Gender", "Rank", "Senator Title"];
+  for (let i = 0; i < headerlist.length; i++) {
+    th = document.createElement("th");
+    th.innerText = headerlist[i];
+    rowhead.appendChild(th);
   }
 
-  senTable.appendChild(rowhead)
-
+  senTable.appendChild(rowhead);
 
   // uses first for loop to check for dem + title
   // second for repub + title
@@ -191,8 +209,8 @@ function senTable(senArray) {
       senArray[i].leadership_title != null &&
       senArray[i].party == "Democrat"
     ) {
-      row =addToTable(i, senArray);
-      senTable.appendChild(row)
+      row = addToTable(i, senArray);
+      senTable.appendChild(row);
     }
   }
   for (let i = 0; i < senArray.length; i++) {
@@ -200,16 +218,18 @@ function senTable(senArray) {
       senArray[i].leadership_title == null &&
       senArray[i].party == "Democrat"
     ) {
-      row =addToTable(i, senArray);
-      senTable.appendChild(row)    }
+      row = addToTable(i, senArray);
+      senTable.appendChild(row);
+    }
   }
   for (let i = 0; i < senArray.length; i++) {
     if (
       senArray[i].leadership_title != null &&
       senArray[i].party == "Republican"
     ) {
-      row =addToTable(i, senArray);
-      senTable.appendChild(row)    }
+      row = addToTable(i, senArray);
+      senTable.appendChild(row);
+    }
   }
 
   for (let i = 0; i < senArray.length; i++) {
@@ -217,16 +237,18 @@ function senTable(senArray) {
       senArray[i].leadership_title == null &&
       senArray[i].party == "Republican"
     ) {
-      row =addToTable(i, senArray);
-      senTable.appendChild(row)    }
+      row = addToTable(i, senArray);
+      senTable.appendChild(row);
+    }
   }
   for (let i = 0; i < senArray.length; i++) {
     if (
       senArray[i].leadership_title == null &&
       senArray[i].party == "Independent"
     ) {
-      row =addToTable(i, senArray);
-      senTable.appendChild(row)    }
+      row = addToTable(i, senArray);
+      senTable.appendChild(row);
+    }
   }
 
   // Close the table element.
@@ -236,7 +258,7 @@ function senTable(senArray) {
 // creates checkboxes for all the possible options
 // adds the checkboxes to hidden dropdowns
 function addTableFilters(filterlist) {
-  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  var divTitle = ["party", "state", "gender", "rank", "senatortitle"];
   for (let i = 0; i < filterlist.length; i++) {
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
@@ -303,13 +325,13 @@ function changeTable(location) {
   var parentDiv = location.parentNode.parentNode;
   var tableRowToSearch = parentDiv.id;
 
-  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  var divTitle = ["party", "state", "gender", "rank", "senatortitle"];
 
   let i = divTitle.indexOf(tableRowToSearch);
 
   // taken from W3 Schools Table Filter
   // Declare variables
-  let input, filter, table, tr, td, txtValue;     
+  let input, filter, table, tr, td, txtValue;
   input = document.getElementById(location.id); // input = button clicked
   table = document.getElementById("senTable"); // table = table
   tr = table.getElementsByTagName("tr"); // the rows in a list
@@ -317,75 +339,55 @@ function changeTable(location) {
   // checks the checkbox ticked - if its false adds it to the list in senDisplayList
   let clickStatus = input.checked;
 
-
-
-
   // check if its a showall - if it is and true - tick all
-  // if it is and false - untick all 
+  // if it is and false - untick all
   // return after either to stop function
-  // console.log(tableRowToSearch, "TRTS")
-  // console.log(i)
-  // console.log(clickStatus)
-  // console.log(input.id) 
-  // console.log("showAll" + tableRowToSearch)
   if (input.id == "showAll" + tableRowToSearch) {
-    if (clickStatus == false){
-
+    if (clickStatus == false) {
       // untick all boxes
-      let untickList = document.getElementById(tableRowToSearch).childNodes
-      for (let p = 2; p < untickList.length; p++){
-        untickList[p].childNodes[0].checked = false
-        senDisplayList[i].push(untickList[p].childNodes[0].id)
-
+      let untickList = document.getElementById(tableRowToSearch).childNodes;
+      for (let p = 2; p < untickList.length; p++) {
+        untickList[p].childNodes[0].checked = false;
+        senDisplayList[i].push(untickList[p].childNodes[0].id);
       }
-      
-
 
       // hides all rows
-      for (let j = 1; j < tr.length; j++){
-        tr[j].style.display = "none"
-        }
-      
-      
-    } else{
+      for (let j = 1; j < tr.length; j++) {
+        tr[j].style.display = "none";
+      }
+    } else {
       // when clickStatus true
       // untick all boxes
-      let tickList = document.getElementById(tableRowToSearch).childNodes
-      for (let p = 2; p < tickList.length; p++){
-        tickList[p].childNodes[0].checked = true
-        senDisplayList[i] = []
-
+      let tickList = document.getElementById(tableRowToSearch).childNodes;
+      for (let p = 2; p < tickList.length; p++) {
+        tickList[p].childNodes[0].checked = true;
+        senDisplayList[i] = [];
       }
-      
-
 
       // hides all rows
-      for (let j = 1; j < tr.length; j++){
-        tr[j].style.display = "table-row"
-        }
-      
-        // keeps interaction with other lists
-        for (let w = 0; w < senDisplayList.length; w++) {
-          for (let n = 0; n < senDisplayList[w].length; n++) {
-            for (let j = 0; j < tr.length; j++) {
-              td = tr[j].getElementsByTagName("td")[w];
-              if (td) {
-                txtValue = td.textContent || td.innerText;
-                let iteminlist = senDisplayList[w][n];
-      
-                if (txtValue == iteminlist) {
-                  tr[j].style.display = "none";
-                }
+      for (let j = 1; j < tr.length; j++) {
+        tr[j].style.display = "table-row";
+      }
+
+      // keeps interaction with other lists
+      for (let w = 0; w < senDisplayList.length; w++) {
+        for (let n = 0; n < senDisplayList[w].length; n++) {
+          for (let j = 0; j < tr.length; j++) {
+            td = tr[j].getElementsByTagName("td")[w];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              let iteminlist = senDisplayList[w][n];
+
+              if (txtValue == iteminlist) {
+                tr[j].style.display = "none";
               }
             }
           }
         }
-      
+      }
     }
-    return
+    return;
   }
-
-
 
   if (clickStatus == false) {
     senDisplayList[i].push(input.id);
@@ -435,12 +437,5 @@ function changeTable(location) {
       }
     }
   }
-
-console.log(senDisplayList[5])
-
-
 }
-
-
-
 
