@@ -341,7 +341,3 @@ function changeTable(location) {
     }
   }
 }
-
-function ChangeData() {
-  console.log(senArray);
-}
