@@ -32,12 +32,25 @@ senDisplayList = [
 function displayJSON(obj) {
   let senArray = obj.objects;
 
+  let pageHead = document.createElement("h1")
+  pageHead.innerText = "Senators in JSON file"
+  document.body.appendChild(pageHead)
+
   let listOfSens = createFilterLists(senArray);
 
+  // heading followed by the amount of senators in each party
+  let partyHead = document.createElement("h2")
+  partyHead.innerText = "Number of Senators in each Party"
+  document.body.appendChild(partyHead)
   displayParties(partySize(senArray));
 
+  // Adds the titled senators to a list and displays with heading
   addTitledSens(senArray, listOfSens);
 
+  // heading followed by function to create and adds the table filters 
+  filterHead = document.createElement("h2")
+  filterHead.innerText = "Filters"
+  document.body.append(filterHead)
   addTableFilters(listOfSens);
 
   displayTable(senTable(senArray, listOfSens));
@@ -45,13 +58,15 @@ function displayJSON(obj) {
 
 // Creates a list of all senators with titles and displays them in the body
 function addTitledSens(senArray, filterLists) {
+  let titleforTitleTable = document.createElement("h2")
+  titleforTitleTable.innerText = "Senators with Titles"
   let titledTable = document.createElement("ul");
 
-  for (let j = 0; j < filterLists[0].length; j++) {
+  for (let j = 0; j < filterLists[1].length; j++) {
     for (let i = 0; i < senArray.length; i++) {
       if (
         senArray[i].leadership_title != null &&
-        senArray[i].party == filterLists[0][j]
+        senArray[i].party == filterLists[1][j]
       ) {
         let newListEle = document.createElement("li")
         newListEle.innerText =
@@ -67,6 +82,7 @@ function addTitledSens(senArray, filterLists) {
       }
     }
   }
+  document.body.appendChild(titleforTitleTable)
   document.body.appendChild(titledTable);
 }
 
@@ -270,6 +286,10 @@ function senTable(senArray, filterLists) {
 function addTableFilters(filterlist) {
   var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
   for (let i = 1; i < filterlist.length; i++) {
+    let filterTitle = document.createElement("h3")
+    filterTitle.innerText = divTitle[i].toLocaleUpperCase()
+    document.body.appendChild(filterTitle)
+
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
     dropDownDiv.setAttribute("class", "dropdown");
@@ -325,6 +345,8 @@ function addTableFilters(filterlist) {
       drop.appendChild(dropItemLabel);
     }
   }
+  let lineBreak = document.createElement("br")
+  document.body.appendChild(lineBreak)
 }
 
 // function to change the table based on which checkbox filters are clicked
