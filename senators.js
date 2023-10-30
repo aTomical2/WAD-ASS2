@@ -32,25 +32,25 @@ senDisplayList = [
 function displayJSON(obj) {
   let senArray = obj.objects;
   // Adds a main header to the page
-  let pageHead = document.createElement("h1")
-  pageHead.innerText = "Senators in JSON file"
-  document.body.appendChild(pageHead)
+  let pageHead = document.createElement("h1");
+  pageHead.innerText = "Senators in JSON file";
+  document.body.appendChild(pageHead);
 
   let listOfSens = createFilterLists(senArray);
 
   // heading followed by the amount of senators in each party
-  let partyHead = document.createElement("h2")
-  partyHead.innerText = "Number of Senators in each Party"
-  document.body.appendChild(partyHead)
+  let partyHead = document.createElement("h2");
+  partyHead.innerText = "Number of Senators in each Party";
+  document.body.appendChild(partyHead);
   displayParties(partySize(senArray));
 
   // Adds the titled senators to a list and displays with heading
   addTitledSens(senArray, listOfSens);
 
-  // heading followed by function to create and adds the table filters 
-  filterHead = document.createElement("h2")
-  filterHead.innerText = "Filters"
-  document.body.append(filterHead)
+  // heading followed by function to create and adds the table filters
+  filterHead = document.createElement("h2");
+  filterHead.innerText = "Filters";
+  document.body.append(filterHead);
   addTableFilters(listOfSens);
 
   // adds the Table to the page
@@ -60,8 +60,8 @@ function displayJSON(obj) {
 // Creates a list of all senators with titles and displays them in the body
 function addTitledSens(senArray, filterLists) {
   // adds a title to the section
-  let titleforTitleTable = document.createElement("h2")
-  titleforTitleTable.innerText = "Senators with Titles"
+  let titleforTitleTable = document.createElement("h2");
+  titleforTitleTable.innerText = "Senators with Titles";
   let titledTable = document.createElement("ul");
 
   // iterates through the lists supplied by the function
@@ -74,7 +74,7 @@ function addTitledSens(senArray, filterLists) {
         senArray[i].leadership_title != null &&
         senArray[i].party == filterLists[1][j]
       ) {
-        let newListEle = document.createElement("li")
+        let newListEle = document.createElement("li");
         newListEle.innerText =
           senArray[i].leadership_title +
           ": " +
@@ -89,7 +89,7 @@ function addTitledSens(senArray, filterLists) {
     }
   }
   // adds it to the body
-  document.body.appendChild(titleforTitleTable)
+  document.body.appendChild(titleforTitleTable);
   document.body.appendChild(titledTable);
 }
 
@@ -104,8 +104,14 @@ function createFilterLists(senArray) {
 
   for (i = 0; i < senArray.length; i++) {
     // using !list.includes checks if there is an object with matching values in array and adds it if there isn't
-    if (!names.includes(senArray[i].person.firstname+senArray[i].person.lastname)){
-      names.push(senArray[i].person.firstname+ " " +senArray[i].person.lastname)
+    if (
+      !names.includes(
+        senArray[i].person.firstname + senArray[i].person.lastname
+      )
+    ) {
+      names.push(
+        senArray[i].person.firstname + " " + senArray[i].person.lastname
+      );
     }
     if (!party.includes(senArray[i].party)) {
       party.push(senArray[i].party);
@@ -123,7 +129,14 @@ function createFilterLists(senArray) {
       title.push(senArray[i].leadership_title);
     }
   }
-  return [names.sort(),party.sort(), state.sort(), gender.sort(), rank.sort(), title.sort()];
+  return [
+    names.sort(),
+    party.sort(),
+    state.sort(),
+    gender.sort(),
+    rank.sort(),
+    title.sort(),
+  ];
 }
 
 // Function to display the dictionary data for parties
@@ -171,7 +184,6 @@ function displayTable(table) {
 
 // function to create a table holding all the senator details
 function senTable(senArray, filterLists) {
-
   // adds the required information to the table
   function addToTable(i, senArray) {
     let sentitle = senArray[i].leadership_title;
@@ -179,12 +191,10 @@ function senTable(senArray, filterLists) {
       sentitle = "-";
     }
 
-    
     let row, tdName, tdParty, tdState, tdGender, tdSenTitle;
     row = document.createElement("tr");
-    let tdNametd = document.createElement("td")
+    let tdNametd = document.createElement("td");
 
-    
     tdName = document.createElement("button");
     // keeps the name as the buttons text
     tdName.innerText =
@@ -253,9 +263,9 @@ function senTable(senArray, filterLists) {
 
     // adds the name to the main td element
     tdNametd.appendChild(tdName);
-    
+
     // adds all td elements to the tr
-    row.appendChild(tdNametd)
+    row.appendChild(tdNametd);
     row.appendChild(tdParty);
     row.appendChild(tdState);
     row.appendChild(tdGender);
@@ -310,18 +320,22 @@ function senTable(senArray, filterLists) {
 // creates checkboxes for all the possible options
 // adds the checkboxes to hidden dropdowns
 function addTableFilters(filterlist) {
-  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  let divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+
+  let filterDiv = document.createElement("div");
+  filterDiv.setAttribute("id", "filterDiv");
+
   for (let i = 1; i < filterlist.length; i++) {
     // uses the list to add titles
-    let filterTitle = document.createElement("h3")
-    filterTitle.innerText = divTitle[i].toLocaleUpperCase()
-    document.body.appendChild(filterTitle)
+    let filterTitle = document.createElement("h3");
+    filterTitle.innerText = divTitle[i].toLocaleUpperCase();
+    filterDiv.appendChild(filterTitle);
 
     // adds the required information to the div using divTitle items for IDs
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
     dropDownDiv.setAttribute("class", "dropdown");
-    document.body.appendChild(dropDownDiv);
+    filterDiv.appendChild(dropDownDiv);
 
     let newDropdown = document.createElement("ul");
     dropDownDiv.appendChild(newDropdown);
@@ -373,8 +387,9 @@ function addTableFilters(filterlist) {
       drop.appendChild(dropItemLabel);
     }
   }
-  let lineBreak = document.createElement("br")
-  document.body.appendChild(lineBreak)
+  document.body.appendChild(filterDiv);
+  let lineBreak = document.createElement("br");
+  document.body.appendChild(lineBreak);
 }
 
 // function to change the table based on which checkbox filters are clicked
@@ -385,10 +400,10 @@ function changeTable(location) {
   var parentDiv = location.parentNode.parentNode;
   var tableRowToSearch = parentDiv.id;
 
-  var divTitle = ["name","party", "state", "gender", "rank", "senatortitle"];
+  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
 
   let i = divTitle.indexOf(tableRowToSearch);
-  console.log(i, tableRowToSearch)
+  console.log(i, tableRowToSearch);
 
   // taken from W3 Schools Table Filter
   // Declare variables
@@ -453,7 +468,6 @@ function changeTable(location) {
   if (clickStatus == false) {
     senDisplayList[i].push(input.id);
 
-
     // if it's true it removes it from the list and displays it
   } else {
     tempIndex = senDisplayList[i].indexOf(input.id);
@@ -471,13 +485,13 @@ function changeTable(location) {
 
   // does a final loop through all the rows setting anything in the lists to display none
   for (let w = 0; w < senDisplayList.length; w++) {
-    console.log(senDisplayList)
+    console.log(senDisplayList);
     for (let n = 0; n < senDisplayList[w].length; n++) {
       for (let j = 0; j < tr.length; j++) {
         td = tr[j].getElementsByTagName("td")[w];
         if (td) {
           txtValue = td.textContent || td.innerText;
-          console.log(txtValue)
+          console.log(txtValue);
           let iteminlist = senDisplayList[w][n];
 
           if (txtValue == iteminlist) {
