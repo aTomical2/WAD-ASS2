@@ -403,7 +403,6 @@ function changeTable(location) {
   var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
 
   let i = divTitle.indexOf(tableRowToSearch);
-  console.log(i, tableRowToSearch);
 
   // taken from W3 Schools Table Filter
   // Declare variables
@@ -485,13 +484,11 @@ function changeTable(location) {
 
   // does a final loop through all the rows setting anything in the lists to display none
   for (let w = 0; w < senDisplayList.length; w++) {
-    console.log(senDisplayList);
     for (let n = 0; n < senDisplayList[w].length; n++) {
       for (let j = 0; j < tr.length; j++) {
         td = tr[j].getElementsByTagName("td")[w];
         if (td) {
           txtValue = td.textContent || td.innerText;
-          console.log(txtValue);
           let iteminlist = senDisplayList[w][n];
 
           if (txtValue == iteminlist) {
