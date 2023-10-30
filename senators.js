@@ -21,6 +21,7 @@ async function getData() {
   }
 }
 senDisplayList = [
+  (nameListDisplay = []),
   (partyListDisplay = []),
   (stateListDisplay = []),
   (genderListDisplay = []),
@@ -71,6 +72,7 @@ function addTitledSens(senArray, filterLists) {
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
 function createFilterLists(senArray) {
+  names = [];
   party = [];
   state = [];
   gender = [];
@@ -78,6 +80,10 @@ function createFilterLists(senArray) {
   title = [];
 
   for (i = 0; i < senArray.length; i++) {
+    if (!names.includes(senArray[i].person.firstname+senArray[i].person.lastname)){
+      names.push(senArray[i].person.firstname+ " " +senArray[i].person.lastname)
+    }
+
     if (!party.includes(senArray[i].party)) {
       party.push(senArray[i].party);
     }
@@ -94,7 +100,7 @@ function createFilterLists(senArray) {
       title.push(senArray[i].leadership_title);
     }
   }
-  return [party.sort(), state.sort(), gender.sort(), rank.sort(), title.sort()];
+  return [names.sort(),party.sort(), state.sort(), gender.sort(), rank.sort(), title.sort()];
 }
 
 // Function to display the dictionary data for parties
@@ -128,6 +134,7 @@ function displayTable(table) {
   let elemDiv = document.createElement("div");
   elemDiv.setAttribute("id", "senTable");
   document.body.appendChild(elemDiv);
+  console.log(table)
 
   // adds the Table to the element with the ID tag senTable
   document.getElementById("senTable").appendChild(table);
@@ -233,11 +240,11 @@ function senTable(senArray, filterLists) {
   senTable.appendChild(rowhead);
 
   // loops through the items in the filters list to input the senators by title and then by party (dem+title, dem, inde+title, inde etc.)
-  for (let j = 0; j < filterLists[0].length; j++) {
+  for (let j = 0; j < filterLists[1].length; j++) {
     for (let i = 0; i < senArray.length; i++) {
       if (
         senArray[i].leadership_title != null &&
-        senArray[i].party == filterLists[0][j]
+        senArray[i].party == filterLists[1][j]
       ) {
         row = addToTable(i, senArray);
         senTable.appendChild(row);
@@ -246,7 +253,7 @@ function senTable(senArray, filterLists) {
     for (let i = 0; i < senArray.length; i++) {
       if (
         senArray[i].leadership_title == null &&
-        senArray[i].party == filterLists[0][j]
+        senArray[i].party == filterLists[1][j]
       ) {
         row = addToTable(i, senArray);
         senTable.appendChild(row);
@@ -261,8 +268,8 @@ function senTable(senArray, filterLists) {
 // creates checkboxes for all the possible options
 // adds the checkboxes to hidden dropdowns
 function addTableFilters(filterlist) {
-  var divTitle = ["party", "state", "gender", "rank", "senatortitle"];
-  for (let i = 0; i < filterlist.length; i++) {
+  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  for (let i = 1; i < filterlist.length; i++) {
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
     dropDownDiv.setAttribute("class", "dropdown");
@@ -328,9 +335,10 @@ function changeTable(location) {
   var parentDiv = location.parentNode.parentNode;
   var tableRowToSearch = parentDiv.id;
 
-  var divTitle = ["party", "state", "gender", "rank", "senatortitle"];
+  var divTitle = ["name","party", "state", "gender", "rank", "senatortitle"];
 
   let i = divTitle.indexOf(tableRowToSearch);
+  console.log(i, tableRowToSearch)
 
   // taken from W3 Schools Table Filter
   // Declare variables
@@ -395,19 +403,6 @@ function changeTable(location) {
   if (clickStatus == false) {
     senDisplayList[i].push(input.id);
 
-    // Previous code used to hide items as they were selected
-    // taken out but maintained incase a bug is found
-
-    // for (let j = 0; j < tr.length; j++){
-    //   td = tr[j].getElementsByTagName("td")[i]
-    //   if (td){
-    //     txtValue = td.textContent || td.innerText;
-    //     if (txtValue == input.id){
-    //       tr[j].style.display = "none"
-    //     }
-    //   }
-
-    // }
 
     // if it's true it removes it from the list and displays it
   } else {
@@ -426,11 +421,13 @@ function changeTable(location) {
 
   // does a final loop through all the rows setting anything in the lists to display none
   for (let w = 0; w < senDisplayList.length; w++) {
+    console.log(senDisplayList)
     for (let n = 0; n < senDisplayList[w].length; n++) {
       for (let j = 0; j < tr.length; j++) {
         td = tr[j].getElementsByTagName("td")[w];
         if (td) {
           txtValue = td.textContent || td.innerText;
+          console.log(txtValue)
           let iteminlist = senDisplayList[w][n];
 
           if (txtValue == iteminlist) {
