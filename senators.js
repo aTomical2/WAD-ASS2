@@ -16,7 +16,7 @@ async function getData() {
   } catch (error) {
     console.log(error);
     errorP = document.createElement("p");
-    errorP.innerText = "There was an error getting the data: " + error;
+    errorP.innerText = "There was an error: " + error;
     document.body.appendChild(errorP);
   }
 }
@@ -31,13 +31,42 @@ senDisplayList = [
 function displayJSON(obj) {
   let senArray = obj.objects;
 
-  addTableFilters(createFilterLists(senArray));
+  let listOfSens = createFilterLists(senArray);
 
   displayParties(partySize(senArray));
 
-  displayTable(senTable(senArray));
+  addTitledSens(senArray, listOfSens);
 
-  stylePage();
+  addTableFilters(listOfSens);
+
+  displayTable(senTable(senArray, listOfSens));
+}
+
+// Creates a list of all senators with titles and displays them in the body
+function addTitledSens(senArray, filterLists) {
+  let titledTable = document.createElement("ul");
+
+  for (let j = 0; j < filterLists[0].length; j++) {
+    for (let i = 0; i < senArray.length; i++) {
+      if (
+        senArray[i].leadership_title != null &&
+        senArray[i].party == filterLists[0][j]
+      ) {
+        let newListEle = document.createElement("li")
+        newListEle.innerText =
+          senArray[i].leadership_title +
+          ": " +
+          senArray[i].person.firstname +
+          " " +
+          senArray[i].person.lastname +
+          " (" +
+          senArray[i].party +
+          ")";
+        titledTable.appendChild(newListEle);
+      }
+    }
+  }
+  document.body.appendChild(titledTable);
 }
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
@@ -105,7 +134,7 @@ function displayTable(table) {
 }
 
 // function to create a table holding all the senator details
-function senTable(senArray) {
+function senTable(senArray, filterLists) {
   // adds the required information to the table
   function addToTable(i, senArray) {
     let sentitle = senArray[i].leadership_title;
@@ -115,7 +144,7 @@ function senTable(senArray) {
 
     let row, tdName, tdParty, tdState, tdGender, tdSenTitle;
     row = document.createElement("tr");
-
+    let tdNametd = document.createElement("td")
     tdName = document.createElement("button");
     tdName.innerText =
       senArray[i].person.firstname + " " + senArray[i].person.lastname;
@@ -147,6 +176,7 @@ function senTable(senArray) {
     tdNameExtra.appendChild(senLink);
 
     tdNameExtra.style.display = "none";
+
     tdNameExtra.setAttribute(
       "id",
       "div" + senArray[i].person.firstname + senArray[i].person.lastname
@@ -176,7 +206,10 @@ function senTable(senArray) {
     tdSenTitle = document.createElement("td");
     tdSenTitle.innerText = sentitle;
 
-    row.appendChild(tdName);
+    tdNametd.appendChild(tdName);
+    
+
+    row.appendChild(tdNametd)
     row.appendChild(tdParty);
     row.appendChild(tdState);
     row.appendChild(tdGender);
@@ -199,54 +232,25 @@ function senTable(senArray) {
 
   senTable.appendChild(rowhead);
 
-  // uses first for loop to check for dem + title
-  // second for repub + title
-  // third for dem no title
-  // fourth for repub no title
-  for (let i = 0; i < senArray.length; i++) {
-    if (
-      senArray[i].leadership_title != null &&
-      senArray[i].party == "Democrat"
-    ) {
-      row = addToTable(i, senArray);
-      senTable.appendChild(row);
+  // loops through the items in the filters list to input the senators by title and then by party (dem+title, dem, inde+title, inde etc.)
+  for (let j = 0; j < filterLists[0].length; j++) {
+    for (let i = 0; i < senArray.length; i++) {
+      if (
+        senArray[i].leadership_title != null &&
+        senArray[i].party == filterLists[0][j]
+      ) {
+        row = addToTable(i, senArray);
+        senTable.appendChild(row);
+      }
     }
-  }
-  for (let i = 0; i < senArray.length; i++) {
-    if (
-      senArray[i].leadership_title == null &&
-      senArray[i].party == "Democrat"
-    ) {
-      row = addToTable(i, senArray);
-      senTable.appendChild(row);
-    }
-  }
-  for (let i = 0; i < senArray.length; i++) {
-    if (
-      senArray[i].leadership_title != null &&
-      senArray[i].party == "Republican"
-    ) {
-      row = addToTable(i, senArray);
-      senTable.appendChild(row);
-    }
-  }
-
-  for (let i = 0; i < senArray.length; i++) {
-    if (
-      senArray[i].leadership_title == null &&
-      senArray[i].party == "Republican"
-    ) {
-      row = addToTable(i, senArray);
-      senTable.appendChild(row);
-    }
-  }
-  for (let i = 0; i < senArray.length; i++) {
-    if (
-      senArray[i].leadership_title == null &&
-      senArray[i].party == "Independent"
-    ) {
-      row = addToTable(i, senArray);
-      senTable.appendChild(row);
+    for (let i = 0; i < senArray.length; i++) {
+      if (
+        senArray[i].leadership_title == null &&
+        senArray[i].party == filterLists[0][j]
+      ) {
+        row = addToTable(i, senArray);
+        senTable.appendChild(row);
+      }
     }
   }
 
