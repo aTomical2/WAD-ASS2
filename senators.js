@@ -31,7 +31,7 @@ senDisplayList = [
 
 function displayJSON(obj) {
   let senArray = obj.objects;
-
+  // Adds a main header to the page
   let pageHead = document.createElement("h1")
   pageHead.innerText = "Senators in JSON file"
   document.body.appendChild(pageHead)
@@ -53,15 +53,21 @@ function displayJSON(obj) {
   document.body.append(filterHead)
   addTableFilters(listOfSens);
 
+  // adds the Table to the page
   displayTable(senTable(senArray, listOfSens));
 }
 
 // Creates a list of all senators with titles and displays them in the body
 function addTitledSens(senArray, filterLists) {
+  // adds a title to the section
   let titleforTitleTable = document.createElement("h2")
   titleforTitleTable.innerText = "Senators with Titles"
   let titledTable = document.createElement("ul");
 
+  // iterates through the lists supplied by the function
+  // uses the lists to iterate through any party name in the list
+  // adds to the ul if the senator has a title
+  // using lists keeps the searches ordered - i.e. dems, indes, repubs
   for (let j = 0; j < filterLists[1].length; j++) {
     for (let i = 0; i < senArray.length; i++) {
       if (
@@ -82,6 +88,7 @@ function addTitledSens(senArray, filterLists) {
       }
     }
   }
+  // adds it to the body
   document.body.appendChild(titleforTitleTable)
   document.body.appendChild(titledTable);
 }
@@ -96,10 +103,10 @@ function createFilterLists(senArray) {
   title = [];
 
   for (i = 0; i < senArray.length; i++) {
+    // using !list.includes checks if there is an object with matching values in array and adds it if there isn't
     if (!names.includes(senArray[i].person.firstname+senArray[i].person.lastname)){
       names.push(senArray[i].person.firstname+ " " +senArray[i].person.lastname)
     }
-
     if (!party.includes(senArray[i].party)) {
       party.push(senArray[i].party);
     }
@@ -133,12 +140,18 @@ function displayParties(partyDict) {
 
 // function to create a dictionary of the party sizes
 function partySize(senArray) {
+  // creates a dictionary
   let partyDict = {};
+
+  // iterates through all senators in JSON
   for (let i = 0; i < senArray.length; i++) {
+    // sets the party for each
     let party = senArray[i].party;
+    // creates it in the dictionary if it's not been created yet
     if (partyDict[party] === undefined) {
       partyDict[party] = 1;
     } else {
+      // adds 1 to value in dictionary if it has been created already
       partyDict[party]++;
     }
   }
@@ -147,10 +160,10 @@ function partySize(senArray) {
 
 // function to display the table of senators
 function displayTable(table) {
+  // creates a div for the table to be in and assigns id at ID
   let elemDiv = document.createElement("div");
   elemDiv.setAttribute("id", "senTable");
   document.body.appendChild(elemDiv);
-  console.log(table)
 
   // adds the Table to the element with the ID tag senTable
   document.getElementById("senTable").appendChild(table);
@@ -158,6 +171,7 @@ function displayTable(table) {
 
 // function to create a table holding all the senator details
 function senTable(senArray, filterLists) {
+
   // adds the required information to the table
   function addToTable(i, senArray) {
     let sentitle = senArray[i].leadership_title;
@@ -165,14 +179,20 @@ function senTable(senArray, filterLists) {
       sentitle = "-";
     }
 
+    
     let row, tdName, tdParty, tdState, tdGender, tdSenTitle;
     row = document.createElement("tr");
     let tdNametd = document.createElement("td")
+
+    
     tdName = document.createElement("button");
+    // keeps the name as the buttons text
     tdName.innerText =
       senArray[i].person.firstname + " " + senArray[i].person.lastname;
 
     let tdNameExtra, senLink, senLinkText, addListOfItem;
+    // create a div for extra senator information to be in - hidden until the button is clicked
+    // adds all the information to the div
     tdNameExtra = document.createElement("div");
 
     addListOfItem = [
@@ -206,6 +226,7 @@ function senTable(senArray, filterLists) {
     );
 
     tdName.appendChild(tdNameExtra);
+    // adds an anonymous function to display/ hide the div on click
     tdName.addEventListener("click", () => {
       if (tdNameExtra.style.display == "none") {
         tdNameExtra.style.display = "block";
@@ -214,6 +235,7 @@ function senTable(senArray, filterLists) {
       }
     });
 
+    // adds the rest of the data to the row as new data points
     tdParty = document.createElement("td");
     tdParty.innerText = senArray[i].party;
 
@@ -229,9 +251,10 @@ function senTable(senArray, filterLists) {
     tdSenTitle = document.createElement("td");
     tdSenTitle.innerText = sentitle;
 
+    // adds the name to the main td element
     tdNametd.appendChild(tdName);
     
-
+    // adds all td elements to the tr
     row.appendChild(tdNametd)
     row.appendChild(tdParty);
     row.appendChild(tdState);
@@ -246,6 +269,7 @@ function senTable(senArray, filterLists) {
   let senTable = document.createElement("table");
   let rowhead = document.createElement("tr");
 
+  // uses a list to create the headers for the table
   headerlist = ["Name", "Party", "State", "Gender", "Rank", "Senator Title"];
   for (let i = 0; i < headerlist.length; i++) {
     th = document.createElement("th");
@@ -259,6 +283,7 @@ function senTable(senArray, filterLists) {
   for (let j = 0; j < filterLists[1].length; j++) {
     for (let i = 0; i < senArray.length; i++) {
       if (
+        // checks for a title first and adds to table
         senArray[i].leadership_title != null &&
         senArray[i].party == filterLists[1][j]
       ) {
@@ -266,6 +291,7 @@ function senTable(senArray, filterLists) {
         senTable.appendChild(row);
       }
     }
+    // checks for no title and adds to table
     for (let i = 0; i < senArray.length; i++) {
       if (
         senArray[i].leadership_title == null &&
@@ -277,7 +303,7 @@ function senTable(senArray, filterLists) {
     }
   }
 
-  // Close the table element.
+  // returns the table
   return senTable;
 }
 
@@ -286,10 +312,12 @@ function senTable(senArray, filterLists) {
 function addTableFilters(filterlist) {
   var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
   for (let i = 1; i < filterlist.length; i++) {
+    // uses the list to add titles
     let filterTitle = document.createElement("h3")
     filterTitle.innerText = divTitle[i].toLocaleUpperCase()
     document.body.appendChild(filterTitle)
 
+    // adds the required information to the div using divTitle items for IDs
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
     dropDownDiv.setAttribute("class", "dropdown");
