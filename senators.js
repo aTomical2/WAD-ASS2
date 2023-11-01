@@ -20,6 +20,7 @@ async function getData() {
     document.body.appendChild(errorP);
   }
 }
+
 senDisplayList = [
   (nameListDisplay = []),
   (partyListDisplay = []),
@@ -421,8 +422,7 @@ function changeTable(location) {
     if (clickStatus == false) {
       // untick all boxes
       let topLevel = document.getElementById(tableRowToSearch);
-      let secondLevel = topLevel.getElementsByTagName("li")
-
+      let secondLevel = topLevel.getElementsByTagName("li");
 
       for (let p = 1; p < secondLevel.length; p++) {
         secondLevel[p].childNodes[0].checked = false;
@@ -437,8 +437,8 @@ function changeTable(location) {
       // when clickStatus true
       // untick all boxes
       let tickList = document.getElementById(tableRowToSearch);
-      let newTickList = tickList.getElementsByTagName("li")
-      console.log(newTickList)
+      let newTickList = tickList.getElementsByTagName("li");
+      console.log(newTickList);
       for (let p = 1; p < newTickList.length; p++) {
         newTickList[p].childNodes[0].checked = true;
         senDisplayList[i] = [];
