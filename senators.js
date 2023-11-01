@@ -328,15 +328,29 @@ function addTableFilters(filterlist) {
 
   for (let i = 1; i < filterlist.length; i++) {
     // uses the list to add titles
-    let filterTitle = document.createElement("h3");
+    let containerDropdown = document.createElement("div")
+    containerDropdown.setAttribute("id","dropdown")
+
+    let filterTitle = document.createElement("button");
     filterTitle.innerText = divTitle[i].toLocaleUpperCase();
-    filterDiv.appendChild(filterTitle);
+    containerDropdown.appendChild(filterTitle);
+    filterDiv.appendChild(containerDropdown)
+
+    filterTitle.addEventListener("click", () => {
+      let showHide = filterTitle.parentNode.childNodes[1]
+      if (showHide.style.display != "none"){
+        showHide.style.display = "none"
+      } else {
+        showHide.style.display = "block"
+      }
+    })
 
     // adds the required information to the div using divTitle items for IDs
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
-    dropDownDiv.setAttribute("class", "dropdown");
-    filterDiv.appendChild(dropDownDiv);
+    dropDownDiv.setAttribute("class", "dropdown-content");
+    dropDownDiv.setAttribute("style", "display:none;")
+    containerDropdown.appendChild(dropDownDiv);
 
     let newDropdown = document.createElement("ul");
     dropDownDiv.appendChild(newDropdown);
@@ -398,10 +412,10 @@ function changeTable(location) {
   // parent is the div that the tickbox was ticked in
   // tableRowToSearch is the ID of the div
   // i is then the index used for while row to apply the changes to
-  var parentDiv = location.parentNode.parentNode.parentNode;
-  var tableRowToSearch = parentDiv.id;
+  let parentDiv = location.parentNode.parentNode.parentNode;
+  let tableRowToSearch = parentDiv.id;
 
-  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  let divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
 
   let i = divTitle.indexOf(tableRowToSearch);
 
@@ -486,12 +500,10 @@ function changeTable(location) {
     }
   }
   senDisplayList.forEach(senList => {
-    console.log(senList)
     if (senList.length !== 0){
       let showButton = "showAll" + tableRowToSearch
       let showToChange = document.getElementById(showButton)
       showToChange.checked = false
-      console.log(showToChange)
     }
 });
 
