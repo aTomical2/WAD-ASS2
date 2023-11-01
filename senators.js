@@ -438,7 +438,6 @@ function changeTable(location) {
       // untick all boxes
       let tickList = document.getElementById(tableRowToSearch);
       let newTickList = tickList.getElementsByTagName("li");
-      console.log(newTickList);
       for (let p = 1; p < newTickList.length; p++) {
         newTickList[p].childNodes[0].checked = true;
         senDisplayList[i] = [];
@@ -486,6 +485,16 @@ function changeTable(location) {
       }
     }
   }
+  senDisplayList.forEach(senList => {
+    console.log(senList)
+    if (senList.length !== 0){
+      let showButton = "showAll" + tableRowToSearch
+      let showToChange = document.getElementById(showButton)
+      showToChange.checked = false
+      console.log(showToChange)
+    }
+});
+
 
   // does a final loop through all the rows setting anything in the lists to display none
   for (let w = 0; w < senDisplayList.length; w++) {
