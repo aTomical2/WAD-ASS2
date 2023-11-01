@@ -353,7 +353,7 @@ function addTableFilters(filterlist) {
     showAllLabel.setAttribute("for", "showAll" + divTitle[i]);
     showAllLabel.innerHTML = "Show All";
 
-    dropDownDiv.appendChild(showAll);
+    newDropdown.appendChild(showAll);
     showAll.appendChild(showAllInput);
     showAll.appendChild(showAllLabel);
 
@@ -382,7 +382,7 @@ function addTableFilters(filterlist) {
         dropItemLabel.setAttribute("for", "-");
         dropItemLabel.innerHTML = "-";
       }
-      dropDownDiv.appendChild(drop);
+      newDropdown.appendChild(drop);
       drop.appendChild(dropItem);
       drop.appendChild(dropItemLabel);
     }
@@ -397,7 +397,7 @@ function changeTable(location) {
   // parent is the div that the tickbox was ticked in
   // tableRowToSearch is the ID of the div
   // i is then the index used for while row to apply the changes to
-  var parentDiv = location.parentNode.parentNode;
+  var parentDiv = location.parentNode.parentNode.parentNode;
   var tableRowToSearch = parentDiv.id;
 
   var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
@@ -406,7 +406,7 @@ function changeTable(location) {
 
   // taken from W3 Schools Table Filter
   // Declare variables
-  let input, filter, table, tr, td, txtValue;
+  let input, table, tr, td, txtValue;
   input = document.getElementById(location.id); // input = button clicked
   table = document.getElementById("senTable"); // table = table
   tr = table.getElementsByTagName("tr"); // the rows in a list
@@ -420,10 +420,13 @@ function changeTable(location) {
   if (input.id == "showAll" + tableRowToSearch) {
     if (clickStatus == false) {
       // untick all boxes
-      let untickList = document.getElementById(tableRowToSearch).childNodes;
-      for (let p = 2; p < untickList.length; p++) {
-        untickList[p].childNodes[0].checked = false;
-        senDisplayList[i].push(untickList[p].childNodes[0].id);
+      let topLevel = document.getElementById(tableRowToSearch);
+      let secondLevel = topLevel.getElementsByTagName("li")
+
+
+      for (let p = 1; p < secondLevel.length; p++) {
+        secondLevel[p].childNodes[0].checked = false;
+        senDisplayList[i].push(secondLevel[p].childNodes[0].id);
       }
 
       // hides all rows
@@ -433,9 +436,11 @@ function changeTable(location) {
     } else {
       // when clickStatus true
       // untick all boxes
-      let tickList = document.getElementById(tableRowToSearch).childNodes;
-      for (let p = 2; p < tickList.length; p++) {
-        tickList[p].childNodes[0].checked = true;
+      let tickList = document.getElementById(tableRowToSearch);
+      let newTickList = tickList.getElementsByTagName("li")
+      console.log(newTickList)
+      for (let p = 1; p < newTickList.length; p++) {
+        newTickList[p].childNodes[0].checked = true;
         senDisplayList[i] = [];
       }
 
