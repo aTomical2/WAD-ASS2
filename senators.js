@@ -335,7 +335,7 @@ function addTableFilters(filterlist) {
     // adds the required information to the div using divTitle items for IDs
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
-    dropDownDiv.setAttribute("class", "dropdown");
+    dropDownDiv.setAttribute("class", "dropdown-content");
     filterDiv.appendChild(dropDownDiv);
 
     let newDropdown = document.createElement("ul");
@@ -398,10 +398,10 @@ function changeTable(location) {
   // parent is the div that the tickbox was ticked in
   // tableRowToSearch is the ID of the div
   // i is then the index used for while row to apply the changes to
-  var parentDiv = location.parentNode.parentNode.parentNode;
-  var tableRowToSearch = parentDiv.id;
+  let parentDiv = location.parentNode.parentNode.parentNode;
+  let tableRowToSearch = parentDiv.id;
 
-  var divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  let divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
 
   let i = divTitle.indexOf(tableRowToSearch);
 
