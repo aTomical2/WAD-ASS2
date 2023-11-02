@@ -328,28 +328,28 @@ function addTableFilters(filterlist) {
 
   for (let i = 1; i < filterlist.length; i++) {
     // uses the list to add titles
-    let containerDropdown = document.createElement("div")
-    containerDropdown.setAttribute("id","dropdown")
+    let containerDropdown = document.createElement("div");
+    containerDropdown.setAttribute("id", "dropdown");
 
     let filterTitle = document.createElement("button");
     filterTitle.innerText = divTitle[i].toLocaleUpperCase();
     containerDropdown.appendChild(filterTitle);
-    filterDiv.appendChild(containerDropdown)
+    filterDiv.appendChild(containerDropdown);
 
     filterTitle.addEventListener("click", () => {
-      let showHide = filterTitle.parentNode.childNodes[1]
-      if (showHide.style.display != "none"){
-        showHide.style.display = "none"
+      let showHide = filterTitle.parentNode.childNodes[1];
+      if (showHide.style.display != "none") {
+        showHide.style.display = "none";
       } else {
-        showHide.style.display = "block"
+        showHide.style.display = "block";
       }
-    })
+    });
 
     // adds the required information to the div using divTitle items for IDs
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
     dropDownDiv.setAttribute("class", "dropdown-content");
-    dropDownDiv.setAttribute("style", "display:none;")
+    dropDownDiv.setAttribute("style", "display:none;");
     containerDropdown.appendChild(dropDownDiv);
 
     let newDropdown = document.createElement("ul");
@@ -499,14 +499,13 @@ function changeTable(location) {
       }
     }
   }
-  senDisplayList.forEach(senList => {
-    if (senList.length !== 0){
-      let showButton = "showAll" + tableRowToSearch
-      let showToChange = document.getElementById(showButton)
-      showToChange.checked = false
+  senDisplayList.forEach((senList) => {
+    if (senList.length != 0) {
+      let showButton = "showAll" + tableRowToSearch;
+      let showToChange = document.getElementById(showButton);
+      showToChange.checked = false;
     }
-});
-
+  });
 
   // does a final loop through all the rows setting anything in the lists to display none
   for (let w = 0; w < senDisplayList.length; w++) {
