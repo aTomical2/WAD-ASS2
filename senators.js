@@ -34,14 +34,47 @@ function displayJSON(obj) {
   let senArray = obj.objects;
   // Adds a main header to the page
   let pageHead = document.createElement("h1");
-  pageHead.innerText = "Senators in JSON file";
+
+    let pageHead_left = document.createElement("div");
+    let pageHead_centre = document.createElement("div");
+    let pageHead_right = document.createElement("div");
+
+    pageHead_left.innerText = String.fromCharCode(160); //same as "\xa0"
+    pageHead_centre.innerText = "Senators in JSON file";
+    pageHead_right.innerText = "\xa0"; //same as string from char code
+
+    pageHead.setAttribute('class','top_header')
+    pageHead_left.setAttribute('class','col_1');
+    pageHead_centre.setAttribute('class','col_10');
+    pageHead_right.setAttribute('class','row'); //class "row" clears rest of line
+    
+    pageHead.appendChild(pageHead_left);
+    pageHead.appendChild(pageHead_centre);
+    pageHead.appendChild(pageHead_right);
+
   document.body.appendChild(pageHead);
 
   let listOfSens = createFilterLists(senArray);
 
   // heading followed by the amount of senators in each party
   let partyHead = document.createElement("h2");
-  partyHead.innerText = "Number of Senators in each Party";
+    let partyHead_left = document.createElement("div");
+    let partyHead_centre = document.createElement("div");
+    let partyHead_right = document.createElement("div");
+
+    partyHead_left.innerText = String.fromCharCode(160); //same as "\xa0"
+    partyHead_centre.innerText = "Number of Senators in each Party";
+    partyHead_right.innerText = "\xa0"; //same as string from char code
+
+    partyHead.setAttribute('class','number_senators_header')
+    partyHead_left.setAttribute('class','col_1');
+    partyHead_centre.setAttribute('class','col_10');
+    partyHead_right.setAttribute('class','row'); //class "row" clears rest of line
+
+    partyHead.appendChild(partyHead_left);
+    partyHead.appendChild(partyHead_centre);
+    partyHead.appendChild(partyHead_right);
+
   document.body.appendChild(partyHead);
   displayParties(partySize(senArray));
 
@@ -148,8 +181,10 @@ function displayParties(partyDict) {
 
   for (const key in partyDict) {
     document.getElementById("partyNums").innerHTML +=
-      "There are " + partyDict[key] + " " + key + "<br>";
+      "<div "+ "class = 'parties_"+ key +" col_4'>" + partyDict[key] + " " + key + "</div>";//have added values inside divs in order to create a box. Class is parties_
   }
+  document.getElementById("partyNums").innerHTML +=
+    "<div class = 'row' ></div>"//clear line after boxes
 }
 
 // function to create a dictionary of the party sizes
