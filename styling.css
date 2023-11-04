@@ -85,6 +85,7 @@
   text-align: center;
   line-height: 4.5em;
   height: 5em;
+  margin: 4.15%;
 }
 
 .parties_Democrat{
@@ -97,6 +98,8 @@
   text-align: center;
   line-height: 4.5em;
   height: 5em;
+
+  margin: 4.15%;
 }
 
 .parties_Independent{
@@ -109,8 +112,27 @@
   text-align: center;
   line-height: 4.5em;
   height: 5em;
+
+  margin: 4.15%;
 }
 
+/* Senators who have titles */
+
+[class*="titled_senators_list"] {
+  list-style-type: none;
+}
+.titled_senators_list_Democrat{
+color: blue;
+}
+.titled_senators_list_Republican{
+color: red;
+}
+.titled_senators_list_Independant{
+color:yellow;
+}
+ul{
+  border: 1px solid red;
+}
 
   @media only screen and (min-width: 100px) {
     /* For desktop: */

@@ -43,7 +43,7 @@ function displayJSON(obj) {
     pageHead_centre.innerText = "Senators in JSON file";
     pageHead_right.innerText = "\xa0"; //same as string from char code
 
-    pageHead.setAttribute('class','top_header')
+    pageHead.setAttribute('class','top_header');
     pageHead_left.setAttribute('class','col_1');
     pageHead_centre.setAttribute('class','col_10');
     pageHead_right.setAttribute('class','row'); //class "row" clears rest of line
@@ -96,8 +96,17 @@ function addTitledSens(senArray, filterLists) {
   // adds a title to the section
   let titleforTitleTable = document.createElement("h2");
   titleforTitleTable.innerText = "Senators with Titles";
-  let titledTable = document.createElement("ul");
 
+  let titledTable_left = document.createElement("div");
+  titledTable_left.innerText = "\xa0"
+  titledTable_left.setAttribute('class','col_1');
+
+  let titledTable_right = document.createElement("div");
+  titledTable_right.innerText = "\xa0"
+  titledTable_right.setAttribute('class','row');
+
+  let titledTable = document.createElement("ul");
+  titledTable.setAttribute('class','col_10');
   // iterates through the lists supplied by the function
   // uses the lists to iterate through any party name in the list
   // adds to the ul if the senator has a title
@@ -109,7 +118,9 @@ function addTitledSens(senArray, filterLists) {
         senArray[i].party == filterLists[1][j]
       ) {
         let newListEle = document.createElement("li");
+          newListEle.setAttribute('class','titled_senators_list_'+senArray[i].party);
         newListEle.innerText =
+          
           senArray[i].leadership_title +
           ": " +
           senArray[i].person.firstname +
@@ -117,14 +128,17 @@ function addTitledSens(senArray, filterLists) {
           senArray[i].person.lastname +
           " (" +
           senArray[i].party +
-          ")";
+          ")" ;
+        
         titledTable.appendChild(newListEle);
       }
     }
   }
   // adds it to the body
   document.body.appendChild(titleforTitleTable);
+  document.body.appendChild(titledTable_left);
   document.body.appendChild(titledTable);
+  document.body.appendChild(titledTable_right);
 }
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
@@ -181,7 +195,7 @@ function displayParties(partyDict) {
 
   for (const key in partyDict) {
     document.getElementById("partyNums").innerHTML +=
-      "<div "+ "class = 'parties_"+ key +" col_4'>" + partyDict[key] + " " + key + "</div>";//have added values inside divs in order to create a box. Class is parties_
+      "<div "+ "class = 'parties_"+ key +" col_3'>" + partyDict[key] + " " + key + "</div>";//have added values inside divs in order to create a box. Class is parties_
   }
   document.getElementById("partyNums").innerHTML +=
     "<div class = 'row' ></div>"//clear line after boxes
