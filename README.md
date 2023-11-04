@@ -31,3 +31,6 @@ changeTable checks which ID to use by using parentNodes. It then operates on tha
 First it checks the showall button, then if it isn't it will filter the rest. If a button is unchecked it is added to the lists. 
 
 The final loop in the function hides all items that are in a list.
+
+Step 4.
+This was added during step 2. It is a button with a div below it. The div is hidden / shown using an anonymous function in the addToTable function.
