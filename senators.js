@@ -572,10 +572,9 @@ function changeTable(location) {
       let secondLevel = topLevel.getElementsByTagName("li");
 
       for (let p = 1; p < secondLevel.length; p++) {
-        secondLevel[p].childNodes[0].checked = false;
-        senDisplayList[i].push(secondLevel[p].childNodes[0].id);
+        secondLevel[p].childNodes[1].checked = false;
+        senDisplayList[i].push(secondLevel[p].childNodes[1].id);
       }
-
       // hides all rows
       for (let j = 1; j < tr.length; j++) {
         tr[j].style.display = "none";
@@ -586,7 +585,7 @@ function changeTable(location) {
       let tickList = document.getElementById(tableRowToSearch);
       let newTickList = tickList.getElementsByTagName("li");
       for (let p = 1; p < newTickList.length; p++) {
-        newTickList[p].childNodes[0].checked = true;
+        newTickList[p].childNodes[1].checked = true;
         senDisplayList[i] = [];
       }
 
@@ -633,9 +632,12 @@ function changeTable(location) {
     }
   }
   senDisplayList.forEach((senList) => {
+    console.log(senList)
     if (senList.length != 0) {
       let showButton = "showAll" + tableRowToSearch;
+      console.log(1, showButton)
       let showToChange = document.getElementById(showButton);
+      console.log(2, showToChange)
       showToChange.checked = false;
     }
   });
