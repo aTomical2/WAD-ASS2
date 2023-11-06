@@ -459,6 +459,7 @@ function addTableFilters(filterlist) {
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
     dropDownDiv.setAttribute("class", "dropdown-content");
+    dropDownDiv.style.display = "none"
     containerDropdown.appendChild(dropDownDiv);
 
     let newDropdown = document.createElement("ul");
@@ -633,10 +634,16 @@ function changeTable(location) {
   }
   senDisplayList.forEach((senList) => {
     if (senList.length != 0) {
+      console.log(1)
       let showButton = "showAll" + tableRowToSearch;
       let showToChange = document.getElementById(showButton);
       showToChange.checked = false;
-    } 
+    } else {
+      console.log(senList)
+      let showButton = "showAll" + tableRowToSearch;
+      let showToChange = document.getElementById(showButton);
+      showToChange.checked = true;
+    }
   });
 
   // does a final loop through all the rows setting anything in the lists to display none
