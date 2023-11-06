@@ -2,24 +2,56 @@
 * {
   box-sizing: border-box;
 }
-#filterDiv {
-    width: 25%;
-  }
-  .dropdown-content {
-    height: 100px;
-    width: 100%;
-    overflow-y: scroll;
-    overflow-x: auto;
-  }
+.filter_button_styling{
+  text-align: center;
+  width: 20%;
+  float: left;
+  padding: 0px;
+  border:1px solid red;
+}
+.filter_dropdown{
+  padding: 0px;
+  margin:0px;
+  float:left;
+  width:100%;
+}
+
+/*filter dropdown content is box for items within each dropdown menu*/
+[class*="filter_dropdown_content"] {
+  list-style-type: none;
+  padding: 0px;
+  padding-left: 10px;
+  margin:0px;
+  border: 1px solid blue;
+  width:100%
+}
+/*position text within the dropdown item*/
+.filter_dropdown_1_content_text{
+  float: left;
+}
+/*position checkmark button within the dropdown item*/
+.filter_dropdown_1_content_button{
+  float:right;
+}
+/*dropdown-content is div wrapper for dropdown box elements
+ie when a dropdown is clicked the box below which holds all of the choices*/
+.dropdown-content {
+  height: 25vh;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x:scroll;
+  display: none;
+}
 
   /* Table Styling */
   /* Modelled on video here: https://www.youtube.com/watch?v=czZ1PvNW5hk&t=1210s&ab_channel=KevinPowell */
 
   #senTable {
-    width: 80%;
     text-align: center;
     margin: 0;
-    padding-left: 10%;
+    padding: 0%;
+    overflow-y: scroll;
+    overflow-x:scroll;
   }
 
   table {
@@ -32,7 +64,9 @@
   td {
     text-align: left;
     padding: 1rem;
+    height: 10em;
   }
+
 
   td.button {
     padding-top: 1rem;
@@ -46,6 +80,14 @@
 
   tr:nth-child(2n) {
     background-color: hsl(0 0% 0% / 0.2);
+  }
+
+  /*alternating gradient taken from https://stackoverflow.com/questions/42054395/css-selector-apply-a-style-on-all-visible-elements-only*/
+  .panel-group {
+    
+    background-color: orange; 
+    background-image: linear-gradient(transparent 50%, green 50%);
+    background-size: 100% 20em;
   }
 
   button {
@@ -70,7 +112,7 @@
 }
 
 /* Number senators header */
-.number_senators_header{
+.section_header{
   text-align: center;
   color: blue;
 }
