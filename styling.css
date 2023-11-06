@@ -1,0 +1,193 @@
+/* Dropdown menu styling */
+* {
+  box-sizing: border-box;
+}
+.filter_button_styling{
+  text-align: center;
+  width: 20%;
+  float: left;
+  padding: 0px;
+  border:1px solid red;
+}
+.filter_dropdown{
+  padding: 0px;
+  margin:0px;
+  float:left;
+  width:100%;
+}
+
+/*filter dropdown content is box for items within each dropdown menu*/
+[class*="filter_dropdown_content"] {
+  list-style-type: none;
+  padding: 0px;
+  padding-left: 10px;
+  margin:0px;
+  border: 1px solid blue;
+  width:100%
+}
+/*position text within the dropdown item*/
+.filter_dropdown_1_content_text{
+  float: left;
+}
+/*position checkmark button within the dropdown item*/
+.filter_dropdown_1_content_button{
+  float:right;
+}
+/*dropdown-content is div wrapper for dropdown box elements
+ie when a dropdown is clicked the box below which holds all of the choices*/
+.dropdown-content {
+  height: 25vh;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x:scroll;
+  display: none;
+}
+
+  /* Table Styling */
+  /* Modelled on video here: https://www.youtube.com/watch?v=czZ1PvNW5hk&t=1210s&ab_channel=KevinPowell */
+
+  #senTable {
+    text-align: center;
+    margin: 0;
+    padding: 0%;
+    overflow-y: scroll;
+    overflow-x:scroll;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    color: black;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 1rem;
+    height: 10em;
+  }
+
+
+  td.button {
+    padding-top: 1rem;
+    vertical-align: middle;
+  }
+
+  tr {
+    background-color: hsl(0 0% 0% / 0.3);
+    text-align: left;
+  }
+
+  tr:nth-child(2n) {
+    background-color: hsl(0 0% 0% / 0.2);
+  }
+
+  /*alternating gradient taken from https://stackoverflow.com/questions/42054395/css-selector-apply-a-style-on-all-visible-elements-only*/
+  .panel-group {
+    
+    background-color: orange; 
+    background-image: linear-gradient(transparent 50%, green 50%);
+    background-size: 100% 20em;
+  }
+
+  button {
+    text-align: left;
+  }
+
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  [class*="col_"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+  }
+/* Top header */
+.top_header{
+  text-align: center;
+  color: blue;
+}
+
+/* Number senators header */
+.section_header{
+  text-align: center;
+  color: blue;
+}
+
+.parties_Republican{
+  float: left;
+  padding: 5px;
+  border: 1px solid red;
+  background-image: linear-gradient(to bottom, red 100%, white 100%), linear-gradient(to bottom, white 0%, white 100%);
+  background-clip: content-box, padding-box;
+  color: white;
+  text-align: center;
+  line-height: 4.5em;
+  height: 5em;
+  margin: 4.15%;
+}
+
+.parties_Democrat{
+  float: left;
+  padding: 5px;
+  border: 1px solid red;
+  background-image: linear-gradient(to bottom, blue 0%, white 100%), linear-gradient(to bottom, white 0%, white 100%);
+  background-clip: content-box, padding-box;
+  color: white;
+  text-align: center;
+  line-height: 4.5em;
+  height: 5em;
+
+  margin: 4.15%;
+}
+
+.parties_Independent{
+  float: left;
+  padding: 5px;
+  border: 1px solid red;
+  background-image: linear-gradient(to bottom, yellow 0%, white 100%), linear-gradient(to bottom, white 0%, white 100%);
+  background-clip: content-box, padding-box;
+  color: black;
+  text-align: center;
+  line-height: 4.5em;
+  height: 5em;
+
+  margin: 4.15%;
+}
+
+/* Senators who have titles */
+
+[class*="titled_senators_list"] {
+  list-style-type: none;
+}
+.titled_senators_list_Democrat{
+color: blue;
+}
+.titled_senators_list_Republican{
+color: red;
+}
+.titled_senators_list_Independant{
+color:yellow;
+}
+ul{
+  border: 1px solid red;
+}
+
+  @media only screen and (min-width: 100px) {
+    /* For desktop: */
+    .col_1 {width: 8.33%;}
+    .col_2 {width: 16.66%;}
+    .col_3 {width: 25%;}
+    .col_4 {width: 33.33%;}
+    .col_5 {width: 41.66%;}
+    .col_6 {width: 50%;}
+    .col_7 {width: 58.33%;}
+    .col_8 {width: 66.66%;}
+    .col_9 {width: 75%;}
+    .col_10 {width: 83.33%;}
+    .col_11 {width: 91.66%;}
+    .col_12 {width: 100%;}
+  }
