@@ -632,14 +632,11 @@ function changeTable(location) {
     }
   }
   senDisplayList.forEach((senList) => {
-    console.log(senList)
     if (senList.length != 0) {
       let showButton = "showAll" + tableRowToSearch;
-      console.log(1, showButton)
       let showToChange = document.getElementById(showButton);
-      console.log(2, showToChange)
       showToChange.checked = false;
-    }
+    } 
   });
 
   // does a final loop through all the rows setting anything in the lists to display none
