@@ -316,6 +316,17 @@ function senTable(senArray, filterLists) {
     // adds all the information to the div
     tdNameExtra = document.createElement("div");
 
+        // used to get the image of the senator
+        let senatorLink = senArray[i].person.link;
+        let split = senatorLink.split("/");
+        let senNum = split[split.length-1];
+        let newSenatorLink = "https://www.govtrack.us/static/legislator-photos/"+senNum+"-200px.jpeg"
+        console.log(newSenatorLink);
+        let addToSenExtra = document.createElement("img");
+        addToSenExtra.setAttribute("class","SenImage");
+        addToSenExtra.src = newSenatorLink
+        tdNameExtra.appendChild(addToSenExtra)
+
     addListOfItem = [
       ["Office is: ", senArray[i].extra.office],
       ["Birthday is: ", senArray[i].person.birthday],
@@ -331,16 +342,7 @@ function senTable(senArray, filterLists) {
         tdNameExtra.appendChild(para);
       }
     }
-    // used to get the image of the senator
-    let senatorLink = senArray[i].person.link;
-    let split = senatorLink.split("/");
-    let senNum = split[split.length-1];
-    let newSenatorLink = "https://www.govtrack.us/static/legislator-photos/"+senNum+"-200px.jpeg"
-    console.log(newSenatorLink);
-    let addToSenExtra = document.createElement("img");
-    addToSenExtra.setAttribute("class","SenImage");
-    addToSenExtra.src = newSenatorLink
-    tdNameExtra.appendChild(addToSenExtra)
+
 
     senLink = document.createElement("a");
     senLinkText = document.createTextNode(senArray[i].website);
