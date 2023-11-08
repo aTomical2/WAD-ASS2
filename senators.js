@@ -35,19 +35,23 @@ function displayJSON(obj) {
   // Adds a main header to the page
   let pageHead = document.createElement("h1");
 
+    
     let pageHead_left = document.createElement("div");
     let pageHead_centre = document.createElement("div");
     let pageHead_right = document.createElement("div");
+    
 
     pageHead_left.innerText = String.fromCharCode(160); //same as "\xa0"
     pageHead_centre.innerText = "Senators in JSON file";
     pageHead_right.innerText = "\xa0"; //same as string from char code
 
     pageHead.setAttribute('class','top_header');
-    pageHead_left.setAttribute('class','col_1');
+
+    pageHead_left.setAttribute('class','col_1')
     pageHead_centre.setAttribute('class','col_10');
     pageHead_right.setAttribute('class','row'); //class "row" clears rest of line
     
+
     pageHead.appendChild(pageHead_left);
     pageHead.appendChild(pageHead_centre);
     pageHead.appendChild(pageHead_right);
@@ -273,7 +277,7 @@ function displayTable(table) {
     elemDiv_left.setAttribute("class", "col_1");
     elemDiv_right.setAttribute("class", "row");
     elemDiv_centre.setAttribute("id", "senTable");
-    elemDiv_centre.setAttribute("class", "col_10");
+    elemDiv_centre.setAttribute("class", "col_10 shadowbox");
 
   elemDiv.appendChild(elemDiv_left);
   elemDiv.appendChild(elemDiv_centre);
@@ -296,9 +300,11 @@ function senTable(senArray, filterLists) {
 
     let row, tdName, tdParty, tdState, tdGender, tdSenTitle;
     row = document.createElement("tr");
+    row.setAttribute("class","tablerow_"+senArray[i].party)
     let tdNametd = document.createElement("td");
 
     tdName = document.createElement("button");
+    tdName.setAttribute("class","table_button_"+senArray[i].party);
     // keeps the name as the buttons text
     tdName.innerText =
       senArray[i].person.firstname + " " + senArray[i].person.lastname;
@@ -432,7 +438,7 @@ function addTableFilters(filterlist) {
     let filterDiv_right = document.createElement("div");
 
     filterDiv_left.setAttribute("class", "col_1");
-    filterDiv_centre.setAttribute("class", "col_10");
+    filterDiv_centre.setAttribute("class", "col_10 shadowbox filtercolor");
     filterDiv_right.setAttribute("class", "row");
   
 
@@ -536,7 +542,9 @@ function addTableFilters(filterlist) {
   filterDiv.append(filterDiv_right);
 
   document.body.appendChild(filterDiv);
-  let lineBreak = document.createElement("br");
+  let lineBreak = document.createElement("div");
+  lineBreak.innerText = "\xa0"
+  lineBreak.setAttribute("class","row")
   document.body.appendChild(lineBreak);
 }
 

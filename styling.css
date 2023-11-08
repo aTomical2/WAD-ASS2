@@ -7,7 +7,7 @@
   width: 20%;
   float: left;
   padding: 0px;
-  border:1px solid red;
+  cursor: pointer;
 }
 .filter_dropdown{
   padding: 0px;
@@ -22,8 +22,7 @@
   padding: 0px;
   padding-left: 10px;
   margin:0px;
-  border: 1px solid blue;
-  width:100%
+  width:100%;
 }
 /*position text within the dropdown item*/
 .filter_dropdown_1_content_text{
@@ -36,11 +35,15 @@
 /*dropdown-content is div wrapper for dropdown box elements
 ie when a dropdown is clicked the box below which holds all of the choices*/
 .dropdown-content {
-  height: 25vh;
+  height: 16vh;
   width: 100%;
   overflow-y: scroll;
   overflow-x:scroll;
   display: none;
+  background-color: white;
+}
+.filtercolor{
+  background-color: rgb(35, 63, 147);
 }
 
   /* Table Styling */
@@ -52,48 +55,68 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
     padding: 0%;
     overflow-y: scroll;
     overflow-x:scroll;
+    background-color: white;
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
     color: black;
+    background-color: white;
+    
   }
+ .shadowbox{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
   th,
   td {
     text-align: left;
     padding: 1rem;
-    height: 10em;
+    background-color: white;
   }
 
-
+  th{
+    background-color:rgb(35, 63, 147);
+    color: white;
+  }
   td.button {
     padding-top: 1rem;
     vertical-align: middle;
+    color: blue;
   }
+ .table_button_Democrat:hover{
+  color:rgb(0,25,255);
+  cursor: pointer;
+ }
+ .table_button_Republican:hover{
+  color:rgb(232, 27, 35);
+  cursor: pointer;
+ }
+ .table_button_Independent:hover{
+  color:yellow;
+  cursor: pointer;
+ }
 
   tr {
-    background-color: hsl(0 0% 0% / 0.3);
     text-align: left;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    border-top: 1px solid rgba(128, 128, 128, 0.5);
+    border-collapse: collapse;
   }
 
-  tr:nth-child(2n) {
-    background-color: hsl(0 0% 0% / 0.2);
+  .tablerow_Democrat:hover td{
+    background-color:rgba(0,25,255,0.2);
   }
-
-  /*alternating gradient taken from https://stackoverflow.com/questions/42054395/css-selector-apply-a-style-on-all-visible-elements-only*/
-  .panel-group {
-    
-    background-color: orange; 
-    background-image: linear-gradient(transparent 50%, green 50%);
-    background-size: 100% 20em;
+  .tablerow_Republican:hover td{
+    background-color:rgba(232, 27, 35,0.2);
+  }
+  .tablerow_Independent:hover td{
+    background-color: #075F26;
   }
 
   button {
     text-align: left;
   }
-
   .row::after {
     content: "";
     clear: both;
@@ -103,60 +126,67 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
   [class*="col_"] {
     float: left;
     padding: 15px;
-    border: 1px solid red;
   }
+/**********START:style top and section headers**********/
 /* Top header */
 .top_header{
   text-align: center;
-  color: blue;
+  background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
+  color: white;
+  
 }
-
-/* Number senators header */
+/* section header text styles */
 .section_header{
   text-align: center;
-  color: blue;
+  color: white;
+  background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
 }
+/**********END:style three party boxes**********/
 
+/**********START:style three party boxes**********/
+/*section defines the styling for the three boxes at the top of the page 
+outlining the number of senators in each party and various effects on
+hover of the boxes*/
+[class*="parties_"] {
+  float: left;
+  padding: 5px;
+  text-align: center;
+  line-height: 4.5em;
+  height: 5em;
+  margin: 4.15%;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: larger;
+}
 .parties_Republican{
-  float: left;
-  padding: 5px;
-  border: 1px solid red;
-  background-image: linear-gradient(to bottom, red 100%, white 100%), linear-gradient(to bottom, white 0%, white 100%);
-  background-clip: content-box, padding-box;
-  color: white;
-  text-align: center;
-  line-height: 4.5em;
-  height: 5em;
-  margin: 4.15%;
+  color: rgb(232, 27, 35);
 }
-
 .parties_Democrat{
-  float: left;
-  padding: 5px;
-  border: 1px solid red;
-  background-image: linear-gradient(to bottom, blue 0%, white 100%), linear-gradient(to bottom, white 0%, white 100%);
-  background-clip: content-box, padding-box;
-  color: white;
-  text-align: center;
-  line-height: 4.5em;
-  height: 5em;
-
-  margin: 4.15%;
+  color: rgb(0,25,255);
 }
-
 .parties_Independent{
-  float: left;
-  padding: 5px;
-  border: 1px solid red;
-  background-image: linear-gradient(to bottom, yellow 0%, white 100%), linear-gradient(to bottom, white 0%, white 100%);
-  background-clip: content-box, padding-box;
-  color: black;
-  text-align: center;
-  line-height: 4.5em;
-  height: 5em;
-
-  margin: 4.15%;
+  color: #075F26;
 }
+.parties_Republican:hover{
+  color: white;
+  background-color: rgb(232, 27, 35);
+  transition-duration: 1000ms;
+  cursor: pointer;
+}
+.parties_Democrat:hover{
+  color: white;
+  background-color: rgb(0,25,255);
+  transition-duration: 1000ms;
+  cursor: pointer;
+}
+.parties_Independent:hover{
+  color: white;
+  background-color: #075F26;
+  transition-duration: 1000ms;
+  cursor: pointer;
+}
+/**********END:style 3 party boxes**********/
+
 
 /* Senators who have titles */
 
@@ -164,16 +194,16 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
   list-style-type: none;
 }
 .titled_senators_list_Democrat{
-color: blue;
+color: rgb(0,25,255);
 }
 .titled_senators_list_Republican{
-color: red;
+color: rgb(232, 27, 35);
 }
 .titled_senators_list_Independant{
-color:yellow;
+color:#075F26;
 }
 ul{
-  border: 1px solid red;
+  background-color: white;
 }
 
   @media only screen and (min-width: 100px) {
