@@ -325,6 +325,7 @@ function senTable(senArray, filterLists) {
         let addToSenExtra = document.createElement("img");
         addToSenExtra.setAttribute("class","SenImage");
         addToSenExtra.src = newSenatorLink
+        addToSenExtra.alt = "A picture of Senator " + senArray[i].person.firstname + " " + senArray[i].person.lastname
         tdNameExtra.appendChild(addToSenExtra)
 
     addListOfItem = [
