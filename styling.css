@@ -2,12 +2,16 @@
 * {
   box-sizing: border-box;
 }
+
+html {
+  cursor: url(./freedom-pngwing.png), crosshair;
+}
+
 .filter_button_styling{
   text-align: center;
   width: 20%;
   float: left;
   padding: 0px;
-  cursor: url(./freedom-pngwing.png), pointer;
 }
 .filter_dropdown{
   padding: 0px;
@@ -86,7 +90,6 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
   }
  .table_button_Democrat:hover{
   color:rgb(0,25,255);
-  cursor: url(./freedom-pngwing.png), pointer;
 }
  .table_button_Republican:hover{
   color:rgb(232, 27, 35);
