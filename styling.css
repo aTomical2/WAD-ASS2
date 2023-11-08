@@ -1,0 +1,228 @@
+/* Dropdown menu styling */
+* {
+  box-sizing: border-box;
+}
+.filter_button_styling{
+  text-align: center;
+  width: 20%;
+  float: left;
+  padding: 0px;
+  cursor: pointer;
+}
+.filter_dropdown{
+  padding: 0px;
+  margin:0px;
+  float:left;
+  width:100%;
+}
+
+/*filter dropdown content is box for items within each dropdown menu*/
+[class*="filter_dropdown_content"] {
+  list-style-type: none;
+  padding: 0px;
+  padding-left: 10px;
+  margin:0px;
+  width:100%;
+}
+/*position text within the dropdown item*/
+.filter_dropdown_1_content_text{
+  float: left;
+}
+/*position checkmark button within the dropdown item*/
+.filter_dropdown_1_content_button{
+  float:right;
+}
+/*dropdown-content is div wrapper for dropdown box elements
+ie when a dropdown is clicked the box below which holds all of the choices*/
+.dropdown-content {
+  height: 16vh;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x:scroll;
+  display: none;
+  background-color: white;
+}
+.filtercolor{
+  background-color: rgb(35, 63, 147);
+}
+
+  /* Table Styling */
+  /* Modelled on video here: https://www.youtube.com/watch?v=czZ1PvNW5hk&t=1210s&ab_channel=KevinPowell */
+
+  #senTable {
+    text-align: center;
+    margin: 0;
+    padding: 0%;
+    overflow-y: scroll;
+    overflow-x:scroll;
+    background-color: white;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    color: black;
+    background-color: white;
+    
+  }
+ .shadowbox{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+  th,
+  td {
+    text-align: left;
+    padding: 1rem;
+    background-color: white;
+  }
+
+  th{
+    background-color:rgb(35, 63, 147);
+    color: white;
+  }
+  td.button {
+    padding-top: 1rem;
+    vertical-align: middle;
+    color: blue;
+  }
+ .table_button_Democrat:hover{
+  color:rgb(0,25,255);
+  cursor: pointer;
+ }
+ .table_button_Republican:hover{
+  color:rgb(232, 27, 35);
+  cursor: pointer;
+ }
+ .table_button_Independent:hover{
+  color:yellow;
+  cursor: pointer;
+ }
+
+  tr {
+    text-align: left;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    border-top: 1px solid rgba(128, 128, 128, 0.5);
+    border-collapse: collapse;
+  }
+
+  .tablerow_Democrat:hover td{
+    background-color:rgba(0,25,255,0.2);
+  }
+  .tablerow_Republican:hover td{
+    background-color:rgba(232, 27, 35,0.2);
+  }
+  .tablerow_Independent:hover td{
+    background-color: #075F26;
+  }
+
+  button {
+    text-align: left;
+  }
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  [class*="col_"] {
+    float: left;
+    padding: 15px;
+  }
+/**********START:style top and section headers**********/
+/* Top header */
+.top_header{
+  text-align: center;
+  background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
+  color: white;
+  
+}
+/* section header text styles */
+.section_header{
+  text-align: center;
+  color: white;
+  background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
+}
+/**********END:style three party boxes**********/
+
+/**********START:style three party boxes**********/
+/*section defines the styling for the three boxes at the top of the page 
+outlining the number of senators in each party and various effects on
+hover of the boxes*/
+[class*="parties_"] {
+  float: left;
+  padding: 5px;
+  text-align: center;
+  line-height: 4.5em;
+  height: 5em;
+  margin: 4.15%;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: larger;
+}
+.parties_Republican{
+  color: rgb(232, 27, 35);
+}
+.parties_Democrat{
+  color: rgb(0,25,255);
+}
+.parties_Independent{
+  color: #075F26;
+}
+.parties_Republican:hover{
+  color: white;
+  background-color: rgb(232, 27, 35);
+  transition-duration: 1000ms;
+  cursor: pointer;
+}
+.parties_Democrat:hover{
+  color: white;
+  background-color: rgb(0,25,255);
+  transition-duration: 1000ms;
+  cursor: pointer;
+}
+.parties_Independent:hover{
+  color: white;
+  background-color: #075F26;
+  transition-duration: 1000ms;
+  cursor: pointer;
+}
+/**********END:style 3 party boxes**********/
+
+
+/* Senators who have titles */
+
+[class*="titled_senators_list"] {
+  list-style-type: none;
+}
+.titled_senators_list_Democrat{
+color: rgb(0,25,255);
+}
+.titled_senators_list_Republican{
+color: rgb(232, 27, 35);
+}
+.titled_senators_list_Independant{
+color:#075F26;
+}
+ul{
+  background-color: white;
+}
+
+  @media only screen and (min-width: 400px) {
+    /* For desktop: */
+    .col_1 {width: 8.33%;}
+    .col_2 {width: 16.66%;}
+    .col_3 {width: 25%;}
+    .col_4 {width: 33.33%;}
+    .col_5 {width: 41.66%;}
+    .col_6 {width: 50%;}
+    .col_7 {width: 58.33%;}
+    .col_8 {width: 66.66%;}
+    .col_9 {width: 75%;}
+    .col_10 {width: 83.33%;}
+    .col_11 {width: 91.66%;}
+    .col_12 {width: 100%;}
+  }
+
+  @media only screen and (max-width: 399px) {
+    /* For small screens: */
+    overflow-x: scroll;
+  }
