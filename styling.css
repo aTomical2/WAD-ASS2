@@ -2,6 +2,11 @@
 * {
   box-sizing: border-box;
 }
+
+html {
+  cursor: url(./freedom-pngwing.png), pointer;
+}
+
 .filter_button_styling{
   text-align: center;
   width: 20%;
