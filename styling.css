@@ -229,5 +229,7 @@ ul{
 
   @media only screen and (max-width: 399px) {
     /* For small screens: */
-    overflow-x: scroll;
+    body {
+      overflow-x: scroll;
+    }
   }

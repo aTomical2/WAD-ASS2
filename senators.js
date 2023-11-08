@@ -289,7 +289,6 @@ function displayTable(table) {
 
   document.body.appendChild(elemDiv);
 
-
   // adds the Table to the element with the ID tag senTable
   document.getElementById("senTable").appendChild(table);
 }
