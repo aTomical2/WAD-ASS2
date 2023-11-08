@@ -35,22 +35,22 @@ function displayJSON(obj) {
   // Adds a main header to the page
   let pageHead = document.createElement("h1");
 
-    let pageHead_left = document.createElement("div");
-    let pageHead_centre = document.createElement("div");
-    let pageHead_right = document.createElement("div");
+  let pageHead_left = document.createElement("div");
+  let pageHead_centre = document.createElement("div");
+  let pageHead_right = document.createElement("div");
 
-    pageHead_left.innerText = String.fromCharCode(160); //same as "\xa0"
-    pageHead_centre.innerText = "Senators in JSON file";
-    pageHead_right.innerText = "\xa0"; //same as string from char code
+  pageHead_left.innerText = String.fromCharCode(160); //same as "\xa0"
+  pageHead_centre.innerText = "Senators in JSON file";
+  pageHead_right.innerText = "\xa0"; //same as string from char code
 
-    pageHead.setAttribute('class','top_header');
-    pageHead_left.setAttribute('class','col_1');
-    pageHead_centre.setAttribute('class','col_10');
-    pageHead_right.setAttribute('class','row'); //class "row" clears rest of line
-    
-    pageHead.appendChild(pageHead_left);
-    pageHead.appendChild(pageHead_centre);
-    pageHead.appendChild(pageHead_right);
+  pageHead.setAttribute("class", "top_header");
+  pageHead_left.setAttribute("class", "col_1");
+  pageHead_centre.setAttribute("class", "col_10");
+  pageHead_right.setAttribute("class", "row"); //class "row" clears rest of line
+
+  pageHead.appendChild(pageHead_left);
+  pageHead.appendChild(pageHead_centre);
+  pageHead.appendChild(pageHead_right);
 
   document.body.appendChild(pageHead);
 
@@ -58,22 +58,22 @@ function displayJSON(obj) {
 
   // heading followed by the amount of senators in each party
   let partyHead = document.createElement("h2");
-    let partyHead_left = document.createElement("div");
-    let partyHead_centre = document.createElement("div");
-    let partyHead_right = document.createElement("div");
+  let partyHead_left = document.createElement("div");
+  let partyHead_centre = document.createElement("div");
+  let partyHead_right = document.createElement("div");
 
-    partyHead_left.innerText = String.fromCharCode(160); //same as "\xa0"
-    partyHead_centre.innerText = "Number of Senators in each Party";
-    partyHead_right.innerText = "\xa0"; //same as string from char code
+  partyHead_left.innerText = String.fromCharCode(160); //same as "\xa0"
+  partyHead_centre.innerText = "Number of Senators in each Party";
+  partyHead_right.innerText = "\xa0"; //same as string from char code
 
-    partyHead.setAttribute('class','section_header')
-    partyHead_left.setAttribute('class','col_1');
-    partyHead_centre.setAttribute('class','col_10');
-    partyHead_right.setAttribute('class','row'); //class "row" clears rest of line
+  partyHead.setAttribute("class", "section_header");
+  partyHead_left.setAttribute("class", "col_1");
+  partyHead_centre.setAttribute("class", "col_10");
+  partyHead_right.setAttribute("class", "row"); //class "row" clears rest of line
 
-    partyHead.appendChild(partyHead_left);
-    partyHead.appendChild(partyHead_centre);
-    partyHead.appendChild(partyHead_right);
+  partyHead.appendChild(partyHead_left);
+  partyHead.appendChild(partyHead_centre);
+  partyHead.appendChild(partyHead_right);
 
   document.body.appendChild(partyHead);
   displayParties(partySize(senArray));
@@ -83,24 +83,24 @@ function displayJSON(obj) {
 
   // heading followed by function to create and adds the table filters
   filterHead = document.createElement("h2"); //create header box
-    //create gridview elements for inside h2 box
-    filterHead_left = document.createElement("div");
-    filterHead_centre = document.createElement("div");
-    filterHead_right = document.createElement("div");
-    //set inner text for gridview, elements must not be empty
-    filterHead_left.innerText = "\xa0";
-    filterHead_centre.innerText = "Filters";
-    filterHead_right.innerText = "\xa0";
-    //set classes for divs
-    filterHead_left.setAttribute('class','col_1')
-    filterHead_centre.setAttribute('class','col_10')
-    filterHead_right.setAttribute('class','row')
-    //add divs to header box
-    filterHead.append(filterHead_left);
-    filterHead.append(filterHead_centre);
-    filterHead.append(filterHead_right);
+  //create gridview elements for inside h2 box
+  filterHead_left = document.createElement("div");
+  filterHead_centre = document.createElement("div");
+  filterHead_right = document.createElement("div");
+  //set inner text for gridview, elements must not be empty
+  filterHead_left.innerText = "\xa0";
+  filterHead_centre.innerText = "Filters";
+  filterHead_right.innerText = "\xa0";
+  //set classes for divs
+  filterHead_left.setAttribute("class", "col_1");
+  filterHead_centre.setAttribute("class", "col_10");
+  filterHead_right.setAttribute("class", "row");
+  //add divs to header box
+  filterHead.append(filterHead_left);
+  filterHead.append(filterHead_centre);
+  filterHead.append(filterHead_right);
 
-  filterHead.setAttribute('class','section_header')
+  filterHead.setAttribute("class", "section_header");
 
   document.body.append(filterHead);
   addTableFilters(listOfSens);
@@ -112,40 +112,39 @@ function displayJSON(obj) {
 // Creates a list of all senators with titles and displays them in the body
 function addTitledSens(senArray, filterLists) {
   // adds a title to the section
-  let titletableHead = document.createElement("h2");//create header box
+  let titletableHead = document.createElement("h2"); //create header box
 
-    //create gridview elements for inside h2 box
-    titletableHead_left = document.createElement("div");
-    titletableHead_centre = document.createElement("div");
-    titletableHead_right = document.createElement("div");
-    //set inner text for gridview, elements must not be empty
-    titletableHead_left.innerText = "\xa0";
-    titletableHead_centre.innerText = "Senators with Titles";
-    titletableHead_right.innerText = "\xa0";
-    //set classes for divs
-    titletableHead_left.setAttribute('class','col_1')
-    titletableHead_centre.setAttribute('class','col_10')
-    titletableHead_right.setAttribute('class','row')
-    //add divs to header box
-    titletableHead.append(titletableHead_left);
-    titletableHead.append(titletableHead_centre);
-    titletableHead.append(titletableHead_right);
+  //create gridview elements for inside h2 box
+  titletableHead_left = document.createElement("div");
+  titletableHead_centre = document.createElement("div");
+  titletableHead_right = document.createElement("div");
+  //set inner text for gridview, elements must not be empty
+  titletableHead_left.innerText = "\xa0";
+  titletableHead_centre.innerText = "Senators with Titles";
+  titletableHead_right.innerText = "\xa0";
+  //set classes for divs
+  titletableHead_left.setAttribute("class", "col_1");
+  titletableHead_centre.setAttribute("class", "col_10");
+  titletableHead_right.setAttribute("class", "row");
+  //add divs to header box
+  titletableHead.append(titletableHead_left);
+  titletableHead.append(titletableHead_centre);
+  titletableHead.append(titletableHead_right);
 
-    titletableHead.setAttribute('class','section_header')
-  
+  titletableHead.setAttribute("class", "section_header");
+
   document.body.appendChild(titletableHead);
 
-
   let titledTable_left = document.createElement("div");
-  titledTable_left.innerText = "\xa0"
-  titledTable_left.setAttribute('class','col_1');
+  titledTable_left.innerText = "\xa0";
+  titledTable_left.setAttribute("class", "col_1");
 
   let titledTable_right = document.createElement("div");
-  titledTable_right.innerText = "\xa0"
-  titledTable_right.setAttribute('class','row');
+  titledTable_right.innerText = "\xa0";
+  titledTable_right.setAttribute("class", "row");
 
   let titledTable = document.createElement("ul");
-  titledTable.setAttribute('class','col_10');
+  titledTable.setAttribute("class", "col_10");
   // iterates through the lists supplied by the function
   // uses the lists to iterate through any party name in the list
   // adds to the ul if the senator has a title
@@ -157,9 +156,11 @@ function addTitledSens(senArray, filterLists) {
         senArray[i].party == filterLists[1][j]
       ) {
         let newListEle = document.createElement("li");
-          newListEle.setAttribute('class','titled_senators_list_'+senArray[i].party);
+        newListEle.setAttribute(
+          "class",
+          "titled_senators_list_" + senArray[i].party
+        );
         newListEle.innerText =
-          
           senArray[i].leadership_title +
           ": " +
           senArray[i].person.firstname +
@@ -167,14 +168,14 @@ function addTitledSens(senArray, filterLists) {
           senArray[i].person.lastname +
           " (" +
           senArray[i].party +
-          ")" ;
-        
+          ")";
+
         titledTable.appendChild(newListEle);
       }
     }
   }
   // adds it to the body
-  
+
   document.body.appendChild(titledTable_left);
   document.body.appendChild(titledTable);
   document.body.appendChild(titledTable_right);
@@ -234,10 +235,17 @@ function displayParties(partyDict) {
 
   for (const key in partyDict) {
     document.getElementById("partyNums").innerHTML +=
-      "<div "+ "class = 'parties_"+ key +" col_3'>" + partyDict[key] + " " + key + "</div>";//have added values inside divs in order to create a box. Class is parties_
+      "<div " +
+      "class = 'parties_" +
+      key +
+      " col_3'>" +
+      partyDict[key] +
+      " " +
+      key +
+      "</div>"; //have added values inside divs in order to create a box. Class is parties_
   }
   document.getElementById("partyNums").innerHTML +=
-    "<div class = 'row' ></div>"//clear line after boxes
+    "<div class = 'row' ></div>"; //clear line after boxes
 }
 
 // function to create a dictionary of the party sizes
@@ -264,16 +272,16 @@ function partySize(senArray) {
 function displayTable(table) {
   // creates a div for the table to be in and assigns id at ID
   let elemDiv = document.createElement("div");
-    let elemDiv_left = document.createElement("div");
-    let elemDiv_centre = document.createElement("div");
-    let elemDiv_right = document.createElement("div");
+  let elemDiv_left = document.createElement("div");
+  let elemDiv_centre = document.createElement("div");
+  let elemDiv_right = document.createElement("div");
 
-    elemDiv_left.innerText = "\xa0"
-    elemDiv_right.innerText = "\xa0"
-    elemDiv_left.setAttribute("class", "col_1");
-    elemDiv_right.setAttribute("class", "row");
-    elemDiv_centre.setAttribute("id", "senTable");
-    elemDiv_centre.setAttribute("class", "col_10");
+  elemDiv_left.innerText = "\xa0";
+  elemDiv_right.innerText = "\xa0";
+  elemDiv_left.setAttribute("class", "col_1");
+  elemDiv_right.setAttribute("class", "row");
+  elemDiv_centre.setAttribute("id", "senTable");
+  elemDiv_centre.setAttribute("class", "col_10");
 
   elemDiv.appendChild(elemDiv_left);
   elemDiv.appendChild(elemDiv_centre);
@@ -323,6 +331,16 @@ function senTable(senArray, filterLists) {
         tdNameExtra.appendChild(para);
       }
     }
+    // used to get the image of the senator
+    let senatorLink = senArray[i].person.link;
+    let split = senatorLink.split("/");
+    let senNum = split[split.length-1];
+    let newSenatorLink = "https://www.govtrack.us/static/legislator-photos/"+senNum+"-200px.jpeg"
+    console.log(newSenatorLink);
+    let addToSenExtra = document.createElement("img");
+    addToSenExtra.setAttribute("class","SenImage");
+    addToSenExtra.src = newSenatorLink
+    tdNameExtra.appendChild(addToSenExtra)
 
     senLink = document.createElement("a");
     senLinkText = document.createTextNode(senArray[i].website);
@@ -380,7 +398,7 @@ function senTable(senArray, filterLists) {
 
   // This code iterates through the colorArray and writes html code to put the color information in a table.
   let senTable = document.createElement("table");
-  senTable.setAttribute("class","panel-group");
+  senTable.setAttribute("class", "panel-group");
   let rowhead = document.createElement("tr");
 
   // uses a list to create the headers for the table
@@ -427,14 +445,13 @@ function addTableFilters(filterlist) {
   let divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
 
   let filterDiv = document.createElement("div");
-    let filterDiv_left = document.createElement("div");
-    let filterDiv_centre = document.createElement("div");
-    let filterDiv_right = document.createElement("div");
+  let filterDiv_left = document.createElement("div");
+  let filterDiv_centre = document.createElement("div");
+  let filterDiv_right = document.createElement("div");
 
-    filterDiv_left.setAttribute("class", "col_1");
-    filterDiv_centre.setAttribute("class", "col_10");
-    filterDiv_right.setAttribute("class", "row");
-  
+  filterDiv_left.setAttribute("class", "col_1");
+  filterDiv_centre.setAttribute("class", "col_10");
+  filterDiv_right.setAttribute("class", "row");
 
   for (let i = 1; i < filterlist.length; i++) {
     // uses the list to add titles
@@ -459,21 +476,21 @@ function addTableFilters(filterlist) {
     let dropDownDiv = document.createElement("div");
     dropDownDiv.setAttribute("id", divTitle[i]);
     dropDownDiv.setAttribute("class", "dropdown-content");
-    dropDownDiv.style.display = "none"
+    dropDownDiv.style.display = "none";
     containerDropdown.appendChild(dropDownDiv);
 
     let newDropdown = document.createElement("ul");
-    newDropdown.setAttribute("class","filter_dropdown")
+    newDropdown.setAttribute("class", "filter_dropdown");
     dropDownDiv.appendChild(newDropdown);
     let showAll = document.createElement("li");
-    showAll.setAttribute("class","filter_dropdown_content");
+    showAll.setAttribute("class", "filter_dropdown_content");
 
     showAllInput = document.createElement("input");
     showAllLabel = document.createElement("label");
     let row_ender = document.createElement("div");
-    showAllInput.setAttribute("class","filter_dropdown_1_content_button");
-    showAllLabel.setAttribute("class","filter_dropdown_1_content_text");
-    row_ender.setAttribute("class","row");
+    showAllInput.setAttribute("class", "filter_dropdown_1_content_button");
+    showAllLabel.setAttribute("class", "filter_dropdown_1_content_text");
+    row_ender.setAttribute("class", "row");
 
     showAllInput.setAttribute("id", "showAll" + divTitle[i]);
     showAllInput.setAttribute("type", "checkbox");
@@ -485,24 +502,23 @@ function addTableFilters(filterlist) {
     showAllLabel.setAttribute("for", "showAll" + divTitle[i]);
     showAllLabel.innerHTML = "Show All";
 
-  //  showAllInput.setAttribute("class", "testing");
-  //  showAllLabel.setAttribute("class", "testing");
+    //  showAllInput.setAttribute("class", "testing");
+    //  showAllLabel.setAttribute("class", "testing");
 
     newDropdown.appendChild(showAll);
     showAll.appendChild(showAllLabel);
     showAll.appendChild(showAllInput);
     showAll.appendChild(row_ender);
-    
 
     for (let j = 0; j < filterlist[i].length; j++) {
       let drop = document.createElement("li");
-      drop.setAttribute("class","filter_dropdown_content");
+      drop.setAttribute("class", "filter_dropdown_content");
       let dropItem = document.createElement("input");
       let dropItemLabel = document.createElement("label");
       let row_ender = document.createElement("div");
-      row_ender.setAttribute("class","row");
-      dropItem.setAttribute("class","filter_dropdown_1_content_button");//class for drop down other items text
-      dropItemLabel.setAttribute("class","filter_dropdown_1_content_text");//class for drop down other items button
+      row_ender.setAttribute("class", "row");
+      dropItem.setAttribute("class", "filter_dropdown_1_content_button"); //class for drop down other items text
+      dropItemLabel.setAttribute("class", "filter_dropdown_1_content_text"); //class for drop down other items button
       if (filterlist[i][j] != undefined) {
         dropItem.setAttribute("id", filterlist[i][j]);
         dropItem.setAttribute("type", "checkbox");
@@ -528,7 +544,6 @@ function addTableFilters(filterlist) {
       drop.appendChild(dropItemLabel);
       drop.appendChild(dropItem);
       drop.appendChild(row_ender);
-      
     }
   }
 
@@ -634,7 +649,7 @@ function changeTable(location) {
   }
   senDisplayList.forEach((senList) => {
     if (senList.length != 0) {
-      console.log(1)
+      console.log(1);
       let showButton = "showAll" + tableRowToSearch;
       let showToChange = document.getElementById(showButton);
       showToChange.checked = false;
