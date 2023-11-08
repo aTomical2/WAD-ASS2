@@ -638,11 +638,6 @@ function changeTable(location) {
       let showButton = "showAll" + tableRowToSearch;
       let showToChange = document.getElementById(showButton);
       showToChange.checked = false;
-    } else {
-      console.log(senList)
-      let showButton = "showAll" + tableRowToSearch;
-      let showToChange = document.getElementById(showButton);
-      showToChange.checked = true;
     }
   });
 
