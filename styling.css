@@ -206,7 +206,7 @@ ul{
   background-color: white;
 }
 
-  @media only screen and (min-width: 100px) {
+  @media only screen and (min-width: 400px) {
     /* For desktop: */
     .col_1 {width: 8.33%;}
     .col_2 {width: 16.66%;}
@@ -220,4 +220,9 @@ ul{
     .col_10 {width: 83.33%;}
     .col_11 {width: 91.66%;}
     .col_12 {width: 100%;}
+  }
+
+  @media only screen and (max-width: 399px) {
+    /* For small screens: */
+    overflow-x: scroll;
   }
