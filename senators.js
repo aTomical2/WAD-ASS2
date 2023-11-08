@@ -7,7 +7,13 @@ async function getData() {
 
     // Check if the request was successful
     if (!promise.ok) {
-      throw new Error(`HTTP error! status: ${promise.status}`);
+      const status = promise.status;
+      if (status >= 400 && status < 500) {
+        throw new Error (`Client error! status ${promise.status}`);
+      } else if (status >= 500 && status < 600) {
+        throw new Error (`Server error! status ${promise.status}`)
+      } else {throw new Error(`HTTP error! status: ${promise.status}`);
+      }
     }
 
     const data = await promise.json();
@@ -15,7 +21,7 @@ async function getData() {
     return data;
   } catch (error) {
     console.log(error);
-    errorP = document.createElement("p");
+    let errorP = document.createElement("p");
     errorP.innerText = "There was an error: " + error;
     document.body.appendChild(errorP);
   }

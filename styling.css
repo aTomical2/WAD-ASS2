@@ -227,9 +227,9 @@ ul{
     .col_12 {width: 100%;}
   }
 
-  @media only screen and (max-width: 399px) {
-    /* For small screens: */
-    body {
-      overflow-x: scroll;
-    }
+@media only screen and (max-width: 399px) {
+  /* For small screens: */
+  body {
+    overflow-x: scroll;
   }
+}
