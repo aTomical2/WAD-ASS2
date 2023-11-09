@@ -2,7 +2,7 @@ getData();
 
 async function getData() {
   try {
-    const url = "senaors.json";
+    const url = "senators.json";
     const promise = await fetch(url);
 
     // Check if the request was successful
