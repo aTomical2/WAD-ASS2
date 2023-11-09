@@ -318,6 +318,8 @@ function senTable(senArray, filterLists) {
     row.setAttribute("class","tablerow_"+senArray[i].party)
     let tdNametd = document.createElement("td");
 
+    let tdNameDiv = document.createElement("div")
+    tdNameDiv.setAttribute("class","tablerow_"+senArray[i].party)
     tdName = document.createElement("button");
     tdName.setAttribute("class","table_button_"+senArray[i].party);
     // keeps the name as the buttons text
@@ -398,10 +400,12 @@ function senTable(senArray, filterLists) {
     tdSenTitle.innerText = sentitle;
 
     // adds the name to the main td element
-    tdNametd.appendChild(tdName);
+
+    tdNameDiv.appendChild(tdName);
+    tdNameDiv.appendChild(tdNameExtra)
 
     // adds all td elements to the tr
-    row.appendChild(tdNametd);
+    row.appendChild(tdNameDiv);
     row.appendChild(tdParty);
     row.appendChild(tdState);
     row.appendChild(tdGender);
