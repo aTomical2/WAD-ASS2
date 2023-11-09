@@ -360,10 +360,7 @@ function senTable(senArray, filterLists) {
 
     tdNameExtra.style.display = "none";
 
-    tdNameExtra.setAttribute(
-      "id",
-      "div" + senArray[i].person.firstname + senArray[i].person.lastname
-    );
+
 
     tdName.appendChild(tdNameExtra);
     // adds an anonymous function to display/ hide the div on click
