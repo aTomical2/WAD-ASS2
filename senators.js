@@ -306,7 +306,7 @@ function senTable(senArray, filterLists) {
       sentitle = "-";
     }
 
-    let row, tdName, tdParty, tdState, tdGender, tdSenTitle, tdSenRank;
+    let row, tdName, tdParty, tdState, tdGender, tdSenRank;
     row = document.createElement("tr");
     row.setAttribute("class", "tablerow_" + senArray[i].party);
 
@@ -642,8 +642,17 @@ function changeTable(location) {
   if (clickStatus == false) {
     senDisplayList[i].push(input.id);
 
+    // checks if there is any elements in the selected list and changes the button show all to false if there is
+    let showButton = "showAll" + tableRowToSearch;
+    let showToChange = document.getElementById(showButton);
+    if (senDisplayList[i].length != 0) {
+      showToChange.checked = false;
+    }
+
     // if it's true it removes it from the list and displays it
   } else {
+    // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript
+    // code adapted from this example
     let tempIndex = senDisplayList[i].indexOf(input.id);
     senDisplayList[i].splice(tempIndex, 1);
     for (let j = 0; j < tr.length; j++) {
@@ -655,14 +664,13 @@ function changeTable(location) {
         }
       }
     }
+    // checks if there is any elements in the selected list and changes the button show all to true if there is not
+    let showButton = "showAll" + tableRowToSearch;
+    let showToChange = document.getElementById(showButton);
+    if (senDisplayList[i].length == 0) {
+      showToChange.checked = true;}
   }
-  senDisplayList.forEach((senList) => {
-    if (senList.length != 0) {
-      let showButton = "showAll" + tableRowToSearch;
-      let showToChange = document.getElementById(showButton);
-      showToChange.checked = false;
-    }
-  });
+  
 
   // does a final loop through all the rows setting anything in the lists to display none
   for (let w = 0; w < senDisplayList.length; w++) {
