@@ -27,7 +27,7 @@ async function getData() {
   }
 }
 
-let senDisplayList, nameListDisplay, partyListDisplay, stateListDisplay, genderListDisplay, rankListDisplay, titleListDisplay
+let senDisplayList, nameListDisplay, partyListDisplay, stateListDisplay, genderListDisplay, rankListDisplay
 
 senDisplayList = [
   (nameListDisplay = []),
@@ -35,7 +35,6 @@ senDisplayList = [
   (stateListDisplay = []),
   (genderListDisplay = []),
   (rankListDisplay = []),
-  (titleListDisplay = []),
 ];
 
 function displayJSON(obj) {
@@ -193,13 +192,12 @@ function addTitledSens(senArray, filterLists) {
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
 function createFilterLists(senArray) {
-  let names, party, state, gender, rank, title
+  let names, party, state, gender, rank
   names = [];
   party = [];
   state = [];
   gender = [];
   rank = [];
-  title = [];
 
   for (let i = 0; i < senArray.length; i++) {
     // using !list.includes checks if there is an object with matching values in array and adds it if there isn't
@@ -224,9 +222,6 @@ function createFilterLists(senArray) {
     if (!rank.includes(senArray[i].senator_rank)) {
       rank.push(senArray[i].senator_rank);
     }
-    if (!title.includes(senArray[i].leadership_title)) {
-      title.push(senArray[i].leadership_title);
-    }
   }
   return [
     names.sort(),
@@ -234,7 +229,6 @@ function createFilterLists(senArray) {
     state.sort(),
     gender.sort(),
     rank.sort(),
-    title.sort(),
   ];
 }
 
@@ -394,8 +388,6 @@ function senTable(senArray, filterLists) {
     tdSenRank = document.createElement("td");
     tdSenRank.innerText = senArray[i].senator_rank;
 
-    tdSenTitle = document.createElement("td");
-    tdSenTitle.innerText = sentitle;
 
     // adds the name to the main td element
 
@@ -408,7 +400,6 @@ function senTable(senArray, filterLists) {
     row.appendChild(tdState);
     row.appendChild(tdGender);
     row.appendChild(tdSenRank);
-    row.appendChild(tdSenTitle);
 
     return row;
   }
@@ -419,7 +410,7 @@ function senTable(senArray, filterLists) {
   let rowhead = document.createElement("tr");
 
   // uses a list to create the headers for the table
-  let headerlist = ["Name", "Party", "State", "Gender", "Rank", "Senator Title"];
+  let headerlist = ["Name", "Party", "State", "Gender", "Rank"];
   for (let i = 0; i < headerlist.length; i++) {
     let th = document.createElement("th");
     th.innerText = headerlist[i];
@@ -459,7 +450,7 @@ function senTable(senArray, filterLists) {
 // creates checkboxes for all the possible options
 // adds the checkboxes to hidden dropdowns
 function addTableFilters(filterlist) {
-  let divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  let divTitle = ["name", "party", "state", "gender", "rank"];
 
   let filterDiv = document.createElement("div");
   let filterDiv_left = document.createElement("div");
@@ -584,7 +575,7 @@ function changeTable(location) {
   let parentDiv = location.parentNode.parentNode.parentNode;
   let tableRowToSearch = parentDiv.id;
 
-  let divTitle = ["name", "party", "state", "gender", "rank", "senatortitle"];
+  let divTitle = ["name", "party", "state", "gender", "rank"];
 
   let i = divTitle.indexOf(tableRowToSearch);
 
