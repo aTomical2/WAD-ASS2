@@ -9,10 +9,11 @@ async function getData() {
     if (!promise.ok) {
       const status = promise.status;
       if (status >= 400 && status < 500) {
-        throw new Error (`Client error! status ${promise.status}`);
+        throw new Error(`Client error! status ${promise.status}`);
       } else if (status >= 500 && status < 600) {
-        throw new Error (`Server error! status ${promise.status}`)
-      } else {throw new Error(`HTTP error! status: ${promise.status}`);
+        throw new Error(`Server error! status ${promise.status}`);
+      } else {
+        throw new Error(`HTTP error! status: ${promise.status}`);
       }
     }
 
@@ -27,7 +28,12 @@ async function getData() {
   }
 }
 
-let senDisplayList, nameListDisplay, partyListDisplay, stateListDisplay, genderListDisplay, rankListDisplay
+let senDisplayList,
+  nameListDisplay,
+  partyListDisplay,
+  stateListDisplay,
+  genderListDisplay,
+  rankListDisplay;
 
 senDisplayList = [
   (nameListDisplay = []),
@@ -74,7 +80,6 @@ function displayJSON(obj) {
   partyHead_centre.innerText = "Number of Senators in each Party";
   partyHead_right.innerText = "\xa0"; //same as string from char code
 
-  
   partyHead.setAttribute("class", "section_header");
   partyHead_left.setAttribute("class", "col_1");
   partyHead_centre.setAttribute("class", "col_10");
@@ -192,7 +197,7 @@ function addTitledSens(senArray, filterLists) {
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
 function createFilterLists(senArray) {
-  let names, party, state, gender, rank
+  let names, party, state, gender, rank;
   names = [];
   party = [];
   state = [];
@@ -223,13 +228,7 @@ function createFilterLists(senArray) {
       rank.push(senArray[i].senator_rank);
     }
   }
-  return [
-    names.sort(),
-    party.sort(),
-    state.sort(),
-    gender.sort(),
-    rank.sort(),
-  ];
+  return [names.sort(), party.sort(), state.sort(), gender.sort(), rank.sort()];
 }
 
 // Function to display the dictionary data for parties
@@ -309,11 +308,11 @@ function senTable(senArray, filterLists) {
 
     let row, tdName, tdParty, tdState, tdGender, tdSenTitle, tdSenRank;
     row = document.createElement("tr");
-    row.setAttribute("class","tablerow_"+senArray[i].party)
+    row.setAttribute("class", "tablerow_" + senArray[i].party);
 
-    let tdNameDiv = document.createElement("td")
+    let tdNameDiv = document.createElement("td");
     tdName = document.createElement("button");
-    tdName.setAttribute("class","table_button_"+senArray[i].party);
+    tdName.setAttribute("class", "table_button_" + senArray[i].party);
     // keeps the name as the buttons text
     tdName.innerText =
       senArray[i].person.firstname + " " + senArray[i].person.lastname;
@@ -323,16 +322,23 @@ function senTable(senArray, filterLists) {
     // adds all the information to the div
     tdNameExtra = document.createElement("div");
 
-        // used to get the image of the senator
-        let senatorLink = senArray[i].person.link;
-        let split = senatorLink.split("/");
-        let senNum = split[split.length-1];
-        let newSenatorLink = "https://www.govtrack.us/static/legislator-photos/"+senNum+"-200px.jpeg"
-        let addToSenExtra = document.createElement("img");
-        addToSenExtra.setAttribute("class","SenImage");
-        addToSenExtra.src = newSenatorLink
-        addToSenExtra.alt = "A picture of Senator " + senArray[i].person.firstname + " " + senArray[i].person.lastname
-        tdNameExtra.appendChild(addToSenExtra)
+    // used to get the image of the senator
+    let senatorLink = senArray[i].person.link;
+    let split = senatorLink.split("/");
+    let senNum = split[split.length - 1];
+    let newSenatorLink =
+      "https://www.govtrack.us/static/legislator-photos/" +
+      senNum +
+      "-200px.jpeg";
+    let addToSenExtra = document.createElement("img");
+    addToSenExtra.setAttribute("class", "SenImage");
+    addToSenExtra.src = newSenatorLink;
+    addToSenExtra.alt =
+      "A picture of Senator " +
+      senArray[i].person.firstname +
+      " " +
+      senArray[i].person.lastname;
+    tdNameExtra.appendChild(addToSenExtra);
 
     addListOfItem = [
       ["Office is: ", senArray[i].extra.office],
@@ -350,7 +356,6 @@ function senTable(senArray, filterLists) {
       }
     }
 
-
     senLink = document.createElement("a");
     senLinkText = document.createTextNode(senArray[i].website);
     senLink.appendChild(senLinkText);
@@ -359,8 +364,6 @@ function senTable(senArray, filterLists) {
     tdNameExtra.appendChild(senLink);
 
     tdNameExtra.style.display = "none";
-
-
 
     tdName.appendChild(tdNameExtra);
     // adds an anonymous function to display/ hide the div on click
@@ -385,11 +388,10 @@ function senTable(senArray, filterLists) {
     tdSenRank = document.createElement("td");
     tdSenRank.innerText = senArray[i].senator_rank;
 
-
     // adds the name to the main td element
 
     tdNameDiv.appendChild(tdName);
-    tdNameDiv.appendChild(tdNameExtra)
+    tdNameDiv.appendChild(tdNameExtra);
 
     // adds all td elements to the tr
     row.appendChild(tdNameDiv);
@@ -454,10 +456,9 @@ function addTableFilters(filterlist) {
   let filterDiv_centre = document.createElement("div");
   let filterDiv_right = document.createElement("div");
 
-    filterDiv_left.setAttribute("class", "col_1");
-    filterDiv_centre.setAttribute("class", "col_10 shadowbox filtercolor");
-    filterDiv_right.setAttribute("class", "row");
-  
+  filterDiv_left.setAttribute("class", "col_1");
+  filterDiv_centre.setAttribute("class", "col_10 shadowbox filtercolor");
+  filterDiv_right.setAttribute("class", "row");
 
   for (let i = 1; i < filterlist.length; i++) {
     // uses the list to add titles
@@ -559,8 +560,8 @@ function addTableFilters(filterlist) {
 
   document.body.appendChild(filterDiv);
   let lineBreak = document.createElement("div");
-  lineBreak.innerText = "\xa0"
-  lineBreak.setAttribute("class","row")
+  lineBreak.innerText = "\xa0";
+  lineBreak.setAttribute("class", "row");
   document.body.appendChild(lineBreak);
 }
 

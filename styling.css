@@ -7,18 +7,17 @@ html {
   cursor: url(./images/freedom-pngwing.png), pointer;
 }
 
-.filter_button_styling{
+.filter_button_styling {
   text-align: center;
   width: 25%;
   float: left;
   padding: 0px;
-  
 }
-.filter_dropdown{
+.filter_dropdown {
   padding: 0px;
-  margin:0px;
-  float:left;
-  width:100%;
+  margin: 0px;
+  float: left;
+  width: 100%;
 }
 
 /*filter dropdown content is box for items within each dropdown menu*/
@@ -26,16 +25,16 @@ html {
   list-style-type: none;
   padding: 0px;
   padding-left: 10px;
-  margin:0px;
-  width:100%;
+  margin: 0px;
+  width: 100%;
 }
 /*position text within the dropdown item*/
-.filter_dropdown_1_content_text{
+.filter_dropdown_1_content_text {
   float: left;
 }
 /*position checkmark button within the dropdown item*/
-.filter_dropdown_1_content_button{
-  float:right;
+.filter_dropdown_1_content_button {
+  float: right;
 }
 /*dropdown-content is div wrapper for dropdown box elements
 ie when a dropdown is clicked the box below which holds all of the choices*/
@@ -44,111 +43,119 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
   height: 16vh;
   width: 20%;
   overflow-y: scroll;
-  overflow-x:scroll;
+  overflow-x: scroll;
   display: none;
   background-color: white;
 }
-.dropdown-content label:hover{
+.dropdown-content label:hover {
   background-color: rgb(222, 214, 214);
 }
 
-.filtercolor{
+.filtercolor {
   background-color: rgb(35, 63, 147);
 }
 
-  /* Table Styling */
-  /* Modelled on video here: https://www.youtube.com/watch?v=czZ1PvNW5hk&t=1210s&ab_channel=KevinPowell */
+/* Table Styling */
+/* Modelled on video here: https://www.youtube.com/watch?v=czZ1PvNW5hk&t=1210s&ab_channel=KevinPowell */
 
-  #senTable {
-    text-align: center;
-    margin: 0;
-    padding: 0%;
-    overflow-y: scroll;
-    overflow-x:scroll;
-    background-color: white;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    color: black;
-    background-color: white;
-    
-  }
- .shadowbox{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+#senTable {
+  text-align: center;
+  margin: 0;
+  padding: 0%;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  background-color: white;
 }
 
-  th,
-  td {
-    text-align: left;
-    padding: 1rem;
-    background-color: white;
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: black;
+  background-color: white;
+}
+.shadowbox {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-  th{
-    background-color:rgb(35, 63, 147);
-    color: white;
-  }
-  td.button {
-    padding-top: 1rem;
-    vertical-align: middle;
-    color: blue;
-  }
- .table_button_Democrat:hover{
-  color:rgb(0,25,255);
- }
- .table_button_Republican:hover{
-  color:rgb(232, 27, 35);
- }
- .table_button_Independent:hover{
-  color:#075F26;
- }
+th,
+td {
+  text-align: left;
+  padding: 1rem;
+  background-color: white;
+}
 
-  tr {
-    text-align: left;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-    border-top: 1px solid rgba(128, 128, 128, 0.5);
-    border-collapse: collapse;
-  }
+th {
+  background-color: rgb(35, 63, 147);
+  color: white;
+}
+td.button {
+  padding-top: 1rem;
+  vertical-align: middle;
+  color: blue;
+}
+.table_button_Democrat:hover {
+  color: rgb(0, 25, 255);
+}
+.table_button_Republican:hover {
+  color: rgb(232, 27, 35);
+}
+.table_button_Independent:hover {
+  color: #075f26;
+}
 
-  .tablerow_Democrat:hover td{
-    background-color:rgba(0,25,255,0.2);
-  }
-  .tablerow_Republican:hover td{
-    background-color:rgba(232, 27, 35,0.2);
-  }
-  .tablerow_Independent:hover td{
-    background-color: #075F26;
-  }
+tr {
+  text-align: left;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+  border-top: 1px solid rgba(128, 128, 128, 0.5);
+  border-collapse: collapse;
+}
 
-  button {
-    text-align: left;
-  }
-  .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  [class*="col_"] {
-    float: left;
-    padding: 15px;
-  }
+.tablerow_Democrat:hover td {
+  background-color: rgba(0, 25, 255, 0.2);
+}
+.tablerow_Republican:hover td {
+  background-color: rgba(232, 27, 35, 0.2);
+}
+.tablerow_Independent:hover td {
+  background-color: #075f26;
+}
+
+button {
+  text-align: left;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col_"] {
+  float: left;
+  padding: 15px;
+}
 /**********START:style top and section headers**********/
 /* Top header */
-.top_header{
+.top_header {
   text-align: center;
-  background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
+  background-image: linear-gradient(
+    90deg,
+    rgb(0, 25, 255) 30%,
+    rgb(232, 27, 35) 70%
+  );
   color: white;
-  font-size:xx-large;
+  font-size: xx-large;
   font-weight: 600;
 }
 /* section header text styles */
-.section_header{
+.section_header {
   text-align: center;
   color: white;
-  background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
-  font-size:xx-large;
+  background-image: linear-gradient(
+    90deg,
+    rgb(0, 25, 255) 30%,
+    rgb(232, 27, 35) 70%
+  );
+  font-size: xx-large;
   font-weight: 600;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -170,87 +177,106 @@ hover of the boxes*/
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   font-size: larger;
 }
-.parties_Republican{
+.parties_Republican {
   color: rgb(232, 27, 35);
 }
-.parties_Democrat{
-  color: rgb(0,25,255);
+.parties_Democrat {
+  color: rgb(0, 25, 255);
 }
-.parties_Independent{
-  color: #075F26;
+.parties_Independent {
+  color: #075f26;
 }
-.parties_Republican:hover{
+.parties_Republican:hover {
   color: white;
   background-color: rgb(232, 27, 35);
   transition-duration: 1000ms;
 }
-.parties_Democrat:hover{
+.parties_Democrat:hover {
   color: white;
-  background-color: rgb(0,25,255);
+  background-color: rgb(0, 25, 255);
   transition-duration: 1000ms;
 }
-.parties_Independent:hover{
+.parties_Independent:hover {
   color: white;
-  background-color: #075F26;
+  background-color: #075f26;
   transition-duration: 1000ms;
 }
 /**********END:style 3 party boxes**********/
-
 
 /* Senators who have titles */
 
 [class*="titled_senators_list"] {
   list-style-type: none;
 }
-.titled_senators_list_Democrat{
-color: rgb(0,25,255);
+.titled_senators_list_Democrat {
+  color: rgb(0, 25, 255);
 }
-.titled_senators_list_Republican{
-color: rgb(232, 27, 35);
+.titled_senators_list_Republican {
+  color: rgb(232, 27, 35);
 }
-.titled_senators_list_Independant{
-color:#075F26;
+.titled_senators_list_Independant {
+  color: #075f26;
 }
-ul{
+ul {
   background-color: white;
 }
 
-  @media only screen and (min-width: 650px) {
-    /* For desktop: */
-    .col_1 {width: 8.33%;}
-    .col_2 {width: 16.66%;}
-    .col_3 {width: 25%;}
-    .col_4 {width: 33.33%;}
-    .col_5 {width: 41.66%;}
-    .col_6 {width: 50%;}
-    .col_7 {width: 58.33%;}
-    .col_8 {width: 66.66%;}
-    .col_9 {width: 75%;}
-    .col_10 {width: 83.33%;}
-    .col_11 {width: 91.66%;}
-    .col_12 {width: 100%;}
+@media only screen and (min-width: 650px) {
+  /* For desktop: */
+  .col_1 {
+    width: 8.33%;
+  }
+  .col_2 {
+    width: 16.66%;
+  }
+  .col_3 {
+    width: 25%;
+  }
+  .col_4 {
+    width: 33.33%;
+  }
+  .col_5 {
+    width: 41.66%;
+  }
+  .col_6 {
+    width: 50%;
+  }
+  .col_7 {
+    width: 58.33%;
+  }
+  .col_8 {
+    width: 66.66%;
+  }
+  .col_9 {
+    width: 75%;
+  }
+  .col_10 {
+    width: 83.33%;
+  }
+  .col_11 {
+    width: 91.66%;
+  }
+  .col_12 {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 649px) {
+  /* For small screens: */
+
+  [class*="col_"] {
+    width: 100%;
   }
 
-  @media only screen and (max-width: 649px) {
-    /* For small screens: */
-    
-    [class*="col_"] {
-      width: 100%;
-    }
-    
-    
-    [class*="parties_"] {
-      margin: 0%;
-      margin-top: 1%;
-      
-    }
-    .filter_button_styling{
-      width: 100%;
-    }
-    .dropdown-content{
-      position:relative;
-      width: 100%;
-
-    }
-    
+  [class*="parties_"] {
+    margin: 0%;
+    margin-top: 1%;
   }
+  .filter_button_styling {
+    width: 100%;
+  }
+  .dropdown-content {
+    position: relative;
+    width: 100%;
+  }
+}
