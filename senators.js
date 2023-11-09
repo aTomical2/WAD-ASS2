@@ -508,9 +508,6 @@ function addTableFilters(filterlist) {
     showAllLabel.setAttribute("for", "showAll" + divTitle[i]);
     showAllLabel.innerHTML = "Show All";
 
-    //  showAllInput.setAttribute("class", "testing");
-    //  showAllLabel.setAttribute("class", "testing");
-
     newDropdown.appendChild(showAll);
     showAll.appendChild(showAllLabel);
     showAll.appendChild(showAllInput);
