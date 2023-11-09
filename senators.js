@@ -15,11 +15,13 @@ async function getData() {
     return data;
   } catch (error) {
     console.log(error);
-    errorP = document.createElement("p");
+    let errorP = document.createElement("p");
     errorP.innerText = "There was an error: " + error;
     document.body.appendChild(errorP);
   }
 }
+
+let senDisplayList, nameListDisplay, partyListDisplay, stateListDisplay, genderListDisplay, rankListDisplay, titleListDisplay
 
 senDisplayList = [
   (nameListDisplay = []),
@@ -82,11 +84,11 @@ function displayJSON(obj) {
   addTitledSens(senArray, listOfSens);
 
   // heading followed by function to create and adds the table filters
-  filterHead = document.createElement("h2"); //create header box
+  let filterHead = document.createElement("h2"); //create header box
   //create gridview elements for inside h2 box
-  filterHead_left = document.createElement("div");
-  filterHead_centre = document.createElement("div");
-  filterHead_right = document.createElement("div");
+  let filterHead_left = document.createElement("div");
+  let filterHead_centre = document.createElement("div");
+  let filterHead_right = document.createElement("div");
   //set inner text for gridview, elements must not be empty
   filterHead_left.innerText = "\xa0";
   filterHead_centre.innerText = "Filters";
@@ -115,9 +117,9 @@ function addTitledSens(senArray, filterLists) {
   let titletableHead = document.createElement("h2"); //create header box
 
   //create gridview elements for inside h2 box
-  titletableHead_left = document.createElement("div");
-  titletableHead_centre = document.createElement("div");
-  titletableHead_right = document.createElement("div");
+  let titletableHead_left = document.createElement("div");
+  let titletableHead_centre = document.createElement("div");
+  let titletableHead_right = document.createElement("div");
   //set inner text for gridview, elements must not be empty
   titletableHead_left.innerText = "\xa0";
   titletableHead_centre.innerText = "Senators with Titles";
@@ -183,6 +185,7 @@ function addTitledSens(senArray, filterLists) {
 
 // creates lists of all the table elements sorted alphabetically for use in table filters
 function createFilterLists(senArray) {
+  let names, party, state, gender, rank, title
   names = [];
   party = [];
   state = [];
@@ -190,7 +193,7 @@ function createFilterLists(senArray) {
   rank = [];
   title = [];
 
-  for (i = 0; i < senArray.length; i++) {
+  for (let i = 0; i < senArray.length; i++) {
     // using !list.includes checks if there is an object with matching values in array and adds it if there isn't
     if (
       !names.includes(
@@ -302,7 +305,7 @@ function senTable(senArray, filterLists) {
       sentitle = "-";
     }
 
-    let row, tdName, tdParty, tdState, tdGender, tdSenTitle;
+    let row, tdName, tdParty, tdState, tdGender, tdSenTitle, tdSenRank;
     row = document.createElement("tr");
     row.setAttribute("class","tablerow_"+senArray[i].party)
     let tdNametd = document.createElement("td");
@@ -323,7 +326,6 @@ function senTable(senArray, filterLists) {
         let split = senatorLink.split("/");
         let senNum = split[split.length-1];
         let newSenatorLink = "https://www.govtrack.us/static/legislator-photos/"+senNum+"-200px.jpeg"
-        console.log(newSenatorLink);
         let addToSenExtra = document.createElement("img");
         addToSenExtra.setAttribute("class","SenImage");
         addToSenExtra.src = newSenatorLink
@@ -407,9 +409,9 @@ function senTable(senArray, filterLists) {
   let rowhead = document.createElement("tr");
 
   // uses a list to create the headers for the table
-  headerlist = ["Name", "Party", "State", "Gender", "Rank", "Senator Title"];
+  let headerlist = ["Name", "Party", "State", "Gender", "Rank", "Senator Title"];
   for (let i = 0; i < headerlist.length; i++) {
-    th = document.createElement("th");
+    let th = document.createElement("th");
     th.innerText = headerlist[i];
     rowhead.appendChild(th);
   }
@@ -424,8 +426,8 @@ function senTable(senArray, filterLists) {
         senArray[i].leadership_title != null &&
         senArray[i].party == filterLists[1][j]
       ) {
-        row = addToTable(i, senArray);
-        senTable.appendChild(row);
+        let newRow = addToTable(i, senArray);
+        senTable.appendChild(newRow);
       }
     }
     // checks for no title and adds to table
@@ -434,8 +436,8 @@ function senTable(senArray, filterLists) {
         senArray[i].leadership_title == null &&
         senArray[i].party == filterLists[1][j]
       ) {
-        row = addToTable(i, senArray);
-        senTable.appendChild(row);
+        let newRow = addToTable(i, senArray);
+        senTable.appendChild(newRow);
       }
     }
   }
@@ -491,8 +493,8 @@ function addTableFilters(filterlist) {
     let showAll = document.createElement("li");
     showAll.setAttribute("class", "filter_dropdown_content");
 
-    showAllInput = document.createElement("input");
-    showAllLabel = document.createElement("label");
+    let showAllInput = document.createElement("input");
+    let showAllLabel = document.createElement("label");
     let row_ender = document.createElement("div");
     showAllInput.setAttribute("class", "filter_dropdown_1_content_button");
     showAllLabel.setAttribute("class", "filter_dropdown_1_content_text");
@@ -643,7 +645,7 @@ function changeTable(location) {
 
     // if it's true it removes it from the list and displays it
   } else {
-    tempIndex = senDisplayList[i].indexOf(input.id);
+    let tempIndex = senDisplayList[i].indexOf(input.id);
     senDisplayList[i].splice(tempIndex, 1);
     for (let j = 0; j < tr.length; j++) {
       td = tr[j].getElementsByTagName("td")[i];
@@ -657,7 +659,6 @@ function changeTable(location) {
   }
   senDisplayList.forEach((senList) => {
     if (senList.length != 0) {
-      console.log(1);
       let showButton = "showAll" + tableRowToSearch;
       let showToChange = document.getElementById(showButton);
       showToChange.checked = false;
