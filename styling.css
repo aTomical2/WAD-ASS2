@@ -12,7 +12,7 @@ html {
   width: 20%;
   float: left;
   padding: 0px;
-  cursor: pointer;
+  
 }
 .filter_dropdown{
   padding: 0px;
@@ -91,15 +91,12 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
   }
  .table_button_Democrat:hover{
   color:rgb(0,25,255);
-  cursor: pointer;
  }
  .table_button_Republican:hover{
   color:rgb(232, 27, 35);
-  cursor: pointer;
  }
  .table_button_Independent:hover{
-  color:yellow;
-  cursor: pointer;
+  color:#075F26;
  }
 
   tr {
@@ -176,19 +173,16 @@ hover of the boxes*/
   color: white;
   background-color: rgb(232, 27, 35);
   transition-duration: 1000ms;
-  cursor: pointer;
 }
 .parties_Democrat:hover{
   color: white;
   background-color: rgb(0,25,255);
   transition-duration: 1000ms;
-  cursor: pointer;
 }
 .parties_Independent:hover{
   color: white;
   background-color: #075F26;
   transition-duration: 1000ms;
-  cursor: pointer;
 }
 /**********END:style 3 party boxes**********/
 
@@ -211,7 +205,7 @@ ul{
   background-color: white;
 }
 
-  @media only screen and (min-width: 400px) {
+  @media only screen and (min-width: 650px) {
     /* For desktop: */
     .col_1 {width: 8.33%;}
     .col_2 {width: 16.66%;}
@@ -227,7 +221,18 @@ ul{
     .col_12 {width: 100%;}
   }
 
-  @media only screen and (max-width: 399px) {
+  @media only screen and (max-width: 649px) {
     /* For small screens: */
-    overflow-x: scroll;
+    [class*="col_"] {
+      width: 100%;
+    }
+    [class*="parties_"] {
+      margin: 0%;
+      margin-top: 1%;
+      
+    }
+    .filter_button_styling{
+      width: 100%;
+    }
+   
   }
