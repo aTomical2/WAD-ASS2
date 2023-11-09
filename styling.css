@@ -140,12 +140,18 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
   text-align: center;
   background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
   color: white;
+  font-size:xx-large;
+  font-weight: 600;
 }
 /* section header text styles */
 .section_header{
   text-align: center;
   color: white;
   background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
+  font-size:xx-large;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 /**********END:style three party boxes**********/
 

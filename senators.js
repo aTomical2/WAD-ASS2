@@ -41,7 +41,7 @@ senDisplayList = [
 function displayJSON(obj) {
   let senArray = obj.objects;
   // Adds a main header to the page
-  let pageHead = document.createElement("h1");
+  let pageHead = document.createElement("div");
 
   let pageHead_left = document.createElement("div");
   let pageHead_centre = document.createElement("div");
@@ -65,15 +65,17 @@ function displayJSON(obj) {
   let listOfSens = createFilterLists(senArray);
 
   // heading followed by the amount of senators in each party
-  let partyHead = document.createElement("h2");
+
+  let partyHead = document.createElement("div");
   let partyHead_left = document.createElement("div");
   let partyHead_centre = document.createElement("div");
   let partyHead_right = document.createElement("div");
 
-  partyHead_left.innerText = String.fromCharCode(160); //same as "\xa0"
+  partyHead_left.innerText = "\xa0"; //same as "\xa0"
   partyHead_centre.innerText = "Number of Senators in each Party";
   partyHead_right.innerText = "\xa0"; //same as string from char code
 
+  
   partyHead.setAttribute("class", "section_header");
   partyHead_left.setAttribute("class", "col_1");
   partyHead_centre.setAttribute("class", "col_10");
@@ -90,8 +92,8 @@ function displayJSON(obj) {
   addTitledSens(senArray, listOfSens);
 
   // heading followed by function to create and adds the table filters
-  let filterHead = document.createElement("h2"); //create header box
-  //create gridview elements for inside h2 box
+  let filterHead = document.createElement("div"); //create header box
+  //create gridview elements for inside div box
   let filterHead_left = document.createElement("div");
   let filterHead_centre = document.createElement("div");
   let filterHead_right = document.createElement("div");
@@ -120,9 +122,9 @@ function displayJSON(obj) {
 // Creates a list of all senators with titles and displays them in the body
 function addTitledSens(senArray, filterLists) {
   // adds a title to the section
-  let titletableHead = document.createElement("h2"); //create header box
+  let titletableHead = document.createElement("div"); //create header box
 
-  //create gridview elements for inside h2 box
+  //create gridview elements for inside div box
   let titletableHead_left = document.createElement("div");
   let titletableHead_centre = document.createElement("div");
   let titletableHead_right = document.createElement("div");
