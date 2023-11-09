@@ -664,9 +664,9 @@ function changeTable(location) {
     let showButton = "showAll" + tableRowToSearch;
     let showToChange = document.getElementById(showButton);
     if (senDisplayList[i].length == 0) {
-      showToChange.checked = true;}
+      showToChange.checked = true;
+    }
   }
-  
 
   // does a final loop through all the rows setting anything in the lists to display none
   for (let w = 0; w < senDisplayList.length; w++) {
