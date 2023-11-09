@@ -4,7 +4,11 @@
 }
 
 html {
+<<<<<<< HEAD
   cursor: url(./freedom-pngwing.png), crosshair;
+=======
+  cursor: url(./images/freedom-pngwing.png), pointer;
+>>>>>>> main
 }
 
 .filter_button_styling{
@@ -12,6 +16,10 @@ html {
   width: 20%;
   float: left;
   padding: 0px;
+<<<<<<< HEAD
+=======
+  
+>>>>>>> main
 }
 .filter_dropdown{
   padding: 0px;
@@ -39,13 +47,26 @@ html {
 /*dropdown-content is div wrapper for dropdown box elements
 ie when a dropdown is clicked the box below which holds all of the choices*/
 .dropdown-content {
+<<<<<<< HEAD
   height: 16vh;
   width: 100%;
+=======
+  position: absolute;
+  height: 16vh;
+  width: 20%;
+>>>>>>> main
   overflow-y: scroll;
   overflow-x:scroll;
   display: none;
   background-color: white;
 }
+<<<<<<< HEAD
+=======
+.dropdown-content label:hover{
+  background-color: rgb(222, 214, 214);
+}
+
+>>>>>>> main
 .filtercolor{
   background-color: rgb(35, 63, 147);
 }
@@ -90,12 +111,20 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
   }
  .table_button_Democrat:hover{
   color:rgb(0,25,255);
+<<<<<<< HEAD
 }
+=======
+ }
+>>>>>>> main
  .table_button_Republican:hover{
   color:rgb(232, 27, 35);
  }
  .table_button_Independent:hover{
+<<<<<<< HEAD
   color:yellow;
+=======
+  color:#075F26;
+>>>>>>> main
  }
 
   tr {
@@ -134,7 +163,10 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
   text-align: center;
   background-image: linear-gradient(90deg,rgb(0,25,255) 30%, rgb(232, 27, 35)  70%);
   color: white;
+<<<<<<< HEAD
   
+=======
+>>>>>>> main
 }
 /* section header text styles */
 .section_header{
@@ -204,7 +236,11 @@ ul{
   background-color: white;
 }
 
+<<<<<<< HEAD
   @media only screen and (min-width: 400px) {
+=======
+  @media only screen and (min-width: 650px) {
+>>>>>>> main
     /* For desktop: */
     .col_1 {width: 8.33%;}
     .col_2 {width: 16.66%;}
@@ -220,8 +256,34 @@ ul{
     .col_12 {width: 100%;}
   }
 
+<<<<<<< HEAD
   @media only screen and (max-width: 399px) {
     /* For small screens: */
     overflow-x: scroll;
   }
 
+=======
+  @media only screen and (max-width: 649px) {
+    /* For small screens: */
+    
+    [class*="col_"] {
+      width: 100%;
+    }
+    
+    
+    [class*="parties_"] {
+      margin: 0%;
+      margin-top: 1%;
+      
+    }
+    .filter_button_styling{
+      width: 100%;
+    }
+    .dropdown-content{
+      position:relative;
+      width: 100%;
+
+    }
+    
+  }
+>>>>>>> main
