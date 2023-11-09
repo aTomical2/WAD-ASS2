@@ -200,7 +200,7 @@ tr {
   background-color: rgba(232, 27, 35, 0.2);
 }
 .tablerow_Independent:hover td {
-  background-color: #075f26;
+  background-color: #075f265b;
 }
 button {
   text-align: left;
