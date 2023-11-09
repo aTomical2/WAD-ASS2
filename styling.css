@@ -130,11 +130,11 @@ ie when a dropdown is clicked the box below which holds all of the choices*/
 .dropdown-content {
   position: absolute;
   height: 16vh;
-  width: 20%;
+  width: 15%;
   overflow-y: scroll;
-  overflow-x: scroll;
   display: none;
   background-color: white;
+  border: 1px solid rgb(35, 63, 147);
 }
 .dropdown-content label:hover {
   background-color: rgb(222, 214, 214);
