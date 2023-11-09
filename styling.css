@@ -1,138 +1,13 @@
-/* Dropdown menu styling */
+/**********START:General page styling**********/
 * {
   box-sizing: border-box;
 }
-
+/*American flag cursor*/
 html {
   cursor: url(./images/freedom-pngwing.png), pointer;
 }
+/**********END:General page styling**********/
 
-.filter_button_styling {
-  text-align: center;
-  width: 25%;
-  float: left;
-  padding: 0px;
-}
-.filter_dropdown {
-  padding: 0px;
-  margin: 0px;
-  float: left;
-  width: 100%;
-}
-
-/*filter dropdown content is box for items within each dropdown menu*/
-[class*="filter_dropdown_content"] {
-  list-style-type: none;
-  padding: 0px;
-  padding-left: 10px;
-  margin: 0px;
-  width: 100%;
-}
-/*position text within the dropdown item*/
-.filter_dropdown_1_content_text {
-  float: left;
-}
-/*position checkmark button within the dropdown item*/
-.filter_dropdown_1_content_button {
-  float: right;
-}
-/*dropdown-content is div wrapper for dropdown box elements
-ie when a dropdown is clicked the box below which holds all of the choices*/
-.dropdown-content {
-  position: absolute;
-  height: 16vh;
-  width: 20%;
-  overflow-y: scroll;
-  overflow-x: scroll;
-  display: none;
-  background-color: white;
-}
-.dropdown-content label:hover {
-  background-color: rgb(222, 214, 214);
-}
-
-.filtercolor {
-  background-color: rgb(35, 63, 147);
-}
-
-/* Table Styling */
-/* Modelled on video here: https://www.youtube.com/watch?v=czZ1PvNW5hk&t=1210s&ab_channel=KevinPowell */
-
-#senTable {
-  text-align: center;
-  margin: 0;
-  padding: 0%;
-  overflow-y: scroll;
-  overflow-x: scroll;
-  background-color: white;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  color: black;
-  background-color: white;
-}
-.shadowbox {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-th,
-td {
-  text-align: left;
-  padding: 1rem;
-  background-color: white;
-}
-
-th {
-  background-color: rgb(35, 63, 147);
-  color: white;
-}
-td.button {
-  padding-top: 1rem;
-  vertical-align: middle;
-  color: blue;
-}
-.table_button_Democrat:hover {
-  color: rgb(0, 25, 255);
-}
-.table_button_Republican:hover {
-  color: rgb(232, 27, 35);
-}
-.table_button_Independent:hover {
-  color: #075f26;
-}
-
-tr {
-  text-align: left;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-  border-top: 1px solid rgba(128, 128, 128, 0.5);
-  border-collapse: collapse;
-}
-
-.tablerow_Democrat:hover td {
-  background-color: rgba(0, 25, 255, 0.2);
-}
-.tablerow_Republican:hover td {
-  background-color: rgba(232, 27, 35, 0.2);
-}
-.tablerow_Independent:hover td {
-  background-color: #075f26;
-}
-
-button {
-  text-align: left;
-}
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-[class*="col_"] {
-  float: left;
-  padding: 15px;
-}
 /**********START:style top and section headers**********/
 /* Top header */
 .top_header {
@@ -160,7 +35,7 @@ button {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-/**********END:style three party boxes**********/
+/**********END:style top and section headers**********/
 
 /**********START:style three party boxes**********/
 /*section defines the styling for the three boxes at the top of the page 
@@ -170,7 +45,7 @@ hover of the boxes*/
   float: left;
   padding: 5px;
   text-align: center;
-  line-height: 4.5em;
+  line-height: 3.5em;
   height: 5em;
   margin: 4.15%;
   border-radius: 12px;
@@ -203,8 +78,7 @@ hover of the boxes*/
 }
 /**********END:style 3 party boxes**********/
 
-/* Senators who have titles */
-
+/**********START:Senators who have titles list format**********/
 [class*="titled_senators_list"] {
   list-style-type: none;
 }
@@ -220,7 +94,129 @@ hover of the boxes*/
 ul {
   background-color: white;
 }
+/**********END:Senators who have titles list format**********/
 
+/**********START:Filter Styles**********/
+.filter_button_styling {
+  text-align: center;
+  width: 25%;
+  float: left;
+  padding: 0px;
+}
+.filter_dropdown {
+  padding: 0px;
+  margin: 0px;
+  float: left;
+  width: 98%;
+}
+/*filter dropdown content is box for items within each dropdown menu*/
+[class*="filter_dropdown_content"] {
+  list-style-type: none;
+  padding: 0px;
+  padding-left: 10px;
+  margin: 0px;
+  width: 100%;
+}
+/*position text within the dropdown item*/
+.filter_dropdown_1_content_text {
+  float: left;
+}
+/*position checkmark button within the dropdown item*/
+.filter_dropdown_1_content_button {
+  float: right;
+}
+/*dropdown-content is div wrapper for dropdown box elements
+ie when a dropdown is clicked the box below which holds all of the choices*/
+.dropdown-content {
+  position: absolute;
+  height: 16vh;
+  width: 20%;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  display: none;
+  background-color: white;
+}
+.dropdown-content label:hover {
+  background-color: rgb(222, 214, 214);
+}
+.filtercolor {
+  background-color: rgb(35, 63, 147);
+}
+/**********END:Filter Styles**********/
+
+/**********START:Table Styles**********/
+#senTable {
+  text-align: center;
+  margin: 0;
+  padding: 0%;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  background-color: white;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: black;
+  background-color: white;
+}
+.shadowbox {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+td {
+  text-align: left;
+  padding: 1rem;
+  background-color: white;
+}
+th {
+  text-align: left;
+  padding: 1rem;
+  background-color: rgb(35, 63, 147);
+  color: white;
+}
+td.button {
+  padding-top: 1rem;
+  vertical-align: middle;
+  color: blue;
+}
+.table_button_Democrat:hover {
+  color: rgb(0, 25, 255);
+}
+.table_button_Republican:hover {
+  color: rgb(232, 27, 35);
+}
+.table_button_Independent:hover {
+  color: #075f26;
+}
+tr {
+  text-align: left;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+  border-top: 1px solid rgba(128, 128, 128, 0.5);
+  border-collapse: collapse;
+}
+.tablerow_Democrat:hover td {
+  background-color: rgba(0, 25, 255, 0.2);
+}
+.tablerow_Republican:hover td {
+  background-color: rgba(232, 27, 35, 0.2);
+}
+.tablerow_Independent:hover td {
+  background-color: #075f26;
+}
+button {
+  text-align: left;
+}
+/**********END:Table Styles**********/
+
+/**********START:Media Queries and Gridview for dynamic wesite**********/
+[class*="col_"] {
+  float: left;
+  padding: 15px;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 @media only screen and (min-width: 650px) {
   /* For desktop: */
   .col_1 {
@@ -260,7 +256,6 @@ ul {
     width: 100%;
   }
 }
-
 @media only screen and (max-width: 649px) {
   /* For small screens: */
 
@@ -280,3 +275,4 @@ ul {
     width: 100%;
   }
 }
+/**********END:Media Queries and Gridview for dynamic wesite**********/
