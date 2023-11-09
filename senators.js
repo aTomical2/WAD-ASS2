@@ -331,7 +331,6 @@ function senTable(senArray, filterLists) {
       senNum +
       "-200px.jpeg";
     let addToSenExtra = document.createElement("img");
-    addToSenExtra.setAttribute("class", "SenImage");
     addToSenExtra.src = newSenatorLink;
     addToSenExtra.alt =
       "A picture of Senator " +
