@@ -316,10 +316,8 @@ function senTable(senArray, filterLists) {
     let row, tdName, tdParty, tdState, tdGender, tdSenTitle, tdSenRank;
     row = document.createElement("tr");
     row.setAttribute("class","tablerow_"+senArray[i].party)
-    let tdNametd = document.createElement("td");
 
-    let tdNameDiv = document.createElement("div")
-    tdNameDiv.setAttribute("class","tablerow_"+senArray[i].party)
+    let tdNameDiv = document.createElement("td")
     tdName = document.createElement("button");
     tdName.setAttribute("class","table_button_"+senArray[i].party);
     // keeps the name as the buttons text
