@@ -2,12 +2,18 @@ getData();
 
 async function getData() {
   try {
-    const url = "senators.json";
+    const url = "senaors.json";
     const promise = await fetch(url);
 
     // Check if the request was successful
     if (!promise.ok) {
-      throw new Error(`HTTP error! status: ${promise.status}`);
+      const status = promise.status;
+      if (status >= 400 && status < 500) {
+        throw new Error (`Client error! status ${promise.status}`);
+      } else if (status >= 500 && status < 600) {
+        throw new Error (`Server error! status ${promise.status}`)
+      } else {throw new Error(`HTTP error! status: ${promise.status}`);
+      }
     }
 
     const data = await promise.json();
