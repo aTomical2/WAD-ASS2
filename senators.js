@@ -103,7 +103,7 @@ function displayJSON(obj) {
   let filterHead_right = document.createElement("div");
   //set inner text for gridview, elements must not be empty
   filterHead_left.innerText = "\xa0";
-  filterHead_centre.innerText = "Filters";
+  filterHead_centre.innerText = "Table with Filters";
   filterHead_right.innerText = "\xa0";
   //set classes for divs
   filterHead_left.setAttribute("class", "col_1");
@@ -404,7 +404,6 @@ function senTable(senArray, filterLists) {
 
   // This code iterates through the colorArray and writes html code to put the color information in a table.
   let senTable = document.createElement("table");
-  senTable.setAttribute("class", "panel-group");
   let rowhead = document.createElement("tr");
 
   // uses a list to create the headers for the table
